@@ -1,1 +1,3 @@
-# mana-contracts
+# AtomicInventory
+
+Cross game inventory system
