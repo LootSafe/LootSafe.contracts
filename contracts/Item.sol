@@ -10,7 +10,7 @@ contract Item is StandardToken {
   bytes32 skin;
   bytes32 metadata;
 
-  function Item(bytes8 _name, bytes32 _id, uint256 _totalSupply, address _owner, bytes32 _skin, bytes32 _metadata) {
+  function Item(bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, bytes32 _metadata) {
     name = _name;                     // Human readable name of the item
     id = _id;                         // Computer readable name of the item
     decimals = 0;                     // You can't trade a fraction of an item. (Sorry exchanges, no fees move on.)
@@ -18,7 +18,7 @@ contract Item is StandardToken {
     totalSupply = _totalSupply;       // Total amount of items ever available
     skin = _skin;                     // Optional skin on the item
     metadata = _metadata;             // Extra data storage for item
-    balances[_owner] = _totalSupply;  // Give all the items to Inventory for now
+    balances[msg.sender] = _totalSupply;  // Give all the items to Inventory for now
   }
 
   function despawn(uint256 amount) {
