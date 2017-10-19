@@ -20,7 +20,11 @@ contract Trade {
   mapping(address => mapping(bytes8 => Handshake)) trades;
 
   // Initalize a new handshake trade
-  function newTrade (bytes8 _tradeId, address _traderItem, address _desiredItem, uint256 _traderItemCount, uint256 _desiredItemCount) {
+  function newTrade (bytes8 _tradeId, address _traderItem, address _desiredItem, uint256 _traderItemCount, uint256 _desiredItemCount) public {
+    require(
+      Item(_traderItem).balanceOf(msg.sender) >= _traderItemCount
+    );
+
     trades[msg.sender][_tradeId] = Handshake({
       trader: msg.sender,
       tradee: 0x0,
@@ -33,28 +37,44 @@ contract Trade {
     });
   }
 
+  function exchange (address _item, address _from, address _to, uint _count) internal {
+    Item(_item).exchange(
+      _from,
+      _to, 
+      _count
+    );
+  }
+
   function fulfillTrade (bytes8 _tradeId, address _trader) public {
     Handshake storage trade = trades[_trader][_tradeId];
     // Check that the trader still has the items they wish to sell
-    require(
-      Item(trade.traderItem).balanceOf(trade.trader) >= trade.traderItemCount
-    );
-    // Check that the person trying to fulfill the trade can actually do so
-    require(
-      Item(trade.desiredItem).balanceOf(msg.sender) >= trade.desiredItemCount
-    );
-    
-    // Give the tradee their items, remove from trader
-    Item(trade.traderItem).exchange(
-      trade.trader, msg.sender, trade.traderItemCount
-    );
+    if (Item(trade.traderItem).balanceOf(trade.trader) >= trade.traderItemCount) {
+      // Check that the person trying to fulfill the trade can actually do so
+      require(
+        Item(trade.desiredItem).balanceOf(msg.sender) >= trade.desiredItemCount
+      );
 
-    // Give the trader their items, remove from tradee
-    Item(trade.desiredItem).exchange(
-      msg.sender, trade.trader, trade.desiredItemCount
-    );
+      // Give the tradee their items, remove from trader
+      exchange(
+        trade.traderItem,
+        trade.trader,
+        msg.sender, 
+        trade.traderItemCount
+      );
 
-    // Trade fulfilled
-    trade.fulfilled = true;
+      // Give the trader their items, remove from tradee
+      exchange(
+        trade.desiredItem, 
+        msg.sender, 
+        trade.trader, 
+        trade.desiredItemCount
+      );
+
+      // Trade fulfilled
+      trade.fulfilled = true;
+    } else {
+      // The trader can not fulfill this trade at this time
+      revert();
+    }
   }
 }

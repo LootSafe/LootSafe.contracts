@@ -4,8 +4,8 @@ pragma solidity ^0.4.8;
 // It should aslo house shared modifiers
 
 contract Meta {
-  address owner;
-  uint256 created;
+  address public owner;
+  uint256 public created;
 
   function Meta () {
     owner = msg.sender;
