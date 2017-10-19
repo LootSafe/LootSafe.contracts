@@ -1,5 +1,5 @@
 {
-  "name": "mana-contracts",
+  "name": "checkpoint",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "author": "wski <contact.mattdylan@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wski/mana-contracts/issues"
+    "url": "https://github.com/wski/ProjectCheckpoint/issues"
   },
-  "homepage": "https://github.com/wski/mana-contracts#readme"
+  "homepage": "https://github.com/wski/ProjectCheckpoint#readme"
 }
