@@ -1,5 +1,5 @@
 {
-  "name": "checkpoint",
+  "name": "atomic-inventory",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wski/mana-contracts.git"
+    "url": "git+https://github.com/wski/AtomicInventory.git"
   },
   "author": "wski <contact.mattdylan@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wski/ProjectCheckpoint/issues"
+    "url": "https://github.com/wski/AtomicInventory/issues"
   },
-  "homepage": "https://github.com/wski/ProjectCheckpoint#readme"
+  "homepage": "https://github.com/wski/AtomicInventory#readme"
 }
