@@ -1,0 +1,19 @@
+{
+  "name": "mana-contracts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wski/mana-contracts.git"
+  },
+  "author": "wski <contact.mattdylan@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wski/mana-contracts/issues"
+  },
+  "homepage": "https://github.com/wski/mana-contracts#readme"
+}
