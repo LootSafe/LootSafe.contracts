@@ -32,13 +32,13 @@ contract Item is StandardToken {
   }
 
   // Only to be called by Inventory, by a user
-  function despawn (uint256 amount, address _from) public onlyOwner {
+  function despawn (uint256 amount, address _from) onlyOwner {
     balances[_from] -= amount; // Burned
   }
   
   // Disable all future spawning of this item
   // Final supply dictates how many items were ever in circulation
-  function clearAvailability () public onlyOwner {
+  function clearAvailability () onlyOwner {
     finalSupply = totalSupply - balances[owner];
     balances[owner] = 0;
   }

@@ -20,7 +20,16 @@ contract AtomicInventory is Meta, Trade {
   }
 
   // A whole new world
-  function createItem (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, bytes32 _metadata) public onlyOwner {
+  function createItem (
+    bytes8 _name, 
+    bytes32 _id, 
+    uint256 _totalSupply, 
+    bytes32 _skin, 
+    bytes32 _metadata
+  )
+    public 
+    onlyOwner 
+  {
     items[_name] = address(
       new Item(
         _name,
