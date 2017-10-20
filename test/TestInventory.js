@@ -41,13 +41,82 @@ contract('AtomicInventory', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const getItem = await atomicInventoryInstance.getItem(
-      "sword",
+    const itemAddress = await atomicInventoryInstance.getItem.call(
+      "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
-    console.log('addy', getItem)
-    const receiverBalance = await Item.at(getItem).balanceOf(accounts[1])
-    console.log(receiverBalance)
-    if (!getItem) throw new Error('item address not returned')
+
+    const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
+
+    if (!itemAddress) throw new Error('item address not returned')
+    if (!receiverBalance.gt(0)) throw new Error('item not received')
+  })
+
+  it('should despawn items', async () => {
+    const atomicInventoryInstance = await AtomicInventory.new()
+
+    const createItem = await atomicInventoryInstance.createItem(
+      "Sword",
+      "basic_sword",
+      10000,
+      "basic",
+      "",
+      {gas: gasPrice, from: accounts[0]}
+    )
+
+    const spawnItem = await atomicInventoryInstance.spawnItem(
+      "Sword",
+      accounts[1],
+      {gas: gasPrice, from: accounts[0]}
+    )
+
+    const itemAddress = await atomicInventoryInstance.getItem.call(
+      "Sword",
+      {gas: gasPrice, from: accounts[0]}
+    )
+
+    const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
+
+    const despawnTx = await atomicInventoryInstance.despawnItem(
+      "Sword",
+      1,
+      {gas: gasPrice, from: accounts[1]}
+    )
+
+    const receiverBalanceAfterDespawn = await Item.at(itemAddress).balanceOf.call(accounts[1])
+    
+    if (!itemAddress) throw new Error('item address not returned')
+    if (!receiverBalance.gt(0)) throw new Error('item not received')
+    if (!receiverBalanceAfterDespawn.equals(0)) throw new Error('item not despawned')
+  })
+
+  it('should clear availability of items', async () => {
+    const atomicInventoryInstance = await AtomicInventory.new()
+
+    const createItem = await atomicInventoryInstance.createItem(
+      "Sword",
+      "basic_sword",
+      10000,
+      "basic",
+      "",
+      {gas: gasPrice, from: accounts[0]}
+    )
+
+    const itemAddress = await atomicInventoryInstance.getItem.call(
+      "Sword",
+      {gas: gasPrice, from: accounts[0]}
+    )
+
+    const inventoryBalance = await Item.at(itemAddress).balanceOf.call(atomicInventoryInstance.address)
+    const despawnTx = await atomicInventoryInstance.clearAvailability(
+      "Sword",
+      {gas: gasPrice, from: accounts[0]}
+    )
+
+    const inventoryBalanceAfterClear = await Item.at(itemAddress).balanceOf.call(atomicInventoryInstance.address)
+    
+    if (!itemAddress) throw new Error('item address not returned')
+    if (!inventoryBalance.gt(0)) throw new Error('item not registered correctly')
+    if (!inventoryBalanceAfterClear.equals(0)) throw new Error('item not cleared')
   })
 })

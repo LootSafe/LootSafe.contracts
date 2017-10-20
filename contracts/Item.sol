@@ -31,6 +31,7 @@ contract Item is StandardToken {
     owner = msg.sender;                   // This is more than likely Inventory
   }
 
+  event Log(address from, uint256 amount, uint256 balance);
   // Only to be called by Inventory, by a user
   function despawn (uint256 amount, address _from) public onlyOwner {
     balances[_from] -= amount; // Burned
