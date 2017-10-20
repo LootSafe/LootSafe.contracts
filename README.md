@@ -12,7 +12,7 @@ Items are ERC20 contracts, what this means in in your favorite wallets can hold 
 
 ## Trading
 
-Trading is built into the platform and an on chain "auction house" stlye method of trading can be created, and exchanges will happen fast and cheaply, no need to deal with traditional exchanges. 
+Trading is built into the platform and an on chain "auction house" stlye method of trading can be created, and exchanges will happen fast and cheaply, no need to deal with traditional exchanges. Simply place the item you'd like to trade into the auction house, specify how many of that item you're looking to trade, and what item(s) you'd like for it! Then another player that owns the item you want can fulfill this trade.
 
 ## Notice
 
