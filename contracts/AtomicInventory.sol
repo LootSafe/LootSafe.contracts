@@ -14,6 +14,8 @@ import "./Meta.sol";
 contract AtomicInventory is Meta, Trade {
   mapping(bytes8 => address) items;
 
+  event ItemCreated(address itemAddress);
+
   function AtomicInventory () public {
     owner = msg.sender;
     created = now;
@@ -30,7 +32,7 @@ contract AtomicInventory is Meta, Trade {
     public 
     onlyOwner 
   {
-    items[_name] = address(
+    address itemAddress = address(
       new Item(
         _name,
         _id,
@@ -39,11 +41,17 @@ contract AtomicInventory is Meta, Trade {
         _metadata
       )
     );
+    items[_name] = itemAddress;
+    ItemCreated(itemAddress);
   }
 
   // Send an item from the available pool to a user
   function spawnItem (bytes8 _name, address _to) public onlyOwner {
     Item(items[_name]).transfer(_to, 1);
+  }
+
+  function getItem (bytes8 _name) public returns (address itemAddress) {
+    return items[_name];
   }
 
   // This can only be done by the user, and is likely done only for athestetic reasons (or you burn expensive stuff like a madman).
