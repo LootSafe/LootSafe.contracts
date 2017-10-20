@@ -1,4 +1,4 @@
-![](https://i.imgur.com/dBk4jRG.png)
+![](https://i.imgur.com/FGdJ7Av.png | width=100)
 
 # AtomicInventory
 
