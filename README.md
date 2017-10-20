@@ -23,13 +23,21 @@ The project is still under heavy development and more updates will come, for now
 ```
   Contract: AtomicInventory
     ✓ should deploy a contract
-    ✓ should deploy items (40ms)
-    ✓ should send items (150ms)
-    ✓ should despawn items (167ms)
-    ✓ should clear availability of items (153ms)
+    ✓ should deploy items (44ms)
+    ✓ should send items (174ms)
+    ✓ should despawn items (203ms)
+    ✓ should clear availability of items (160ms)
 
   Contract: Item
-    ✓ should deploy a contract (65ms)
+    ✓ should deploy a contract (43ms)
     ✓ should give owner balance
-    ✓ should exchange balances (144ms)
+    ✓ should exchange balances (101ms)
+
+  Contract: AtomicInventory (Trade)
+    ✓ should deploy a contract (43ms)
+    ✓ should should list and fulfill trades (459ms)
+    ✓ should should list all of a users trades (321ms)
+
+
+  11 passing (2s)
 ```

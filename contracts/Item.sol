@@ -13,6 +13,8 @@ contract Item is StandardToken {
   address public owner;
   uint256 public finalSupply;
 
+  event Exchange(address trader, address receiver, uint256 amount);
+
   modifier onlyOwner {
     require(msg.sender == owner);
     _;
@@ -31,9 +33,9 @@ contract Item is StandardToken {
     owner = msg.sender;                   // This is more than likely Inventory
   }
 
-  event Log(address from, uint256 amount, uint256 balance);
   // Only to be called by Inventory, by a user
   function despawn (uint256 amount, address _from) public onlyOwner {
+    totalSupply -= amount;
     balances[_from] -= amount; // Burned
   }
   
@@ -44,8 +46,9 @@ contract Item is StandardToken {
     balances[owner] = 0;
   }
 
-  // Only to be called by Trade, by a user
+  // Only to be called by Trade
   function exchange (address _trader, address _receiver, uint256 amount) public onlyOwner {
+    Exchange(_trader, _receiver, amount);
     balances[_trader] -= amount;
     balances[_receiver] += amount;
   }
