@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/wski/AtomicInventory/issues"
   },
-  "homepage": "https://github.com/wski/AtomicInventory#readme"
+  "homepage": "https://github.com/wski/AtomicInventory#readme",
+  "dependencies": {
+    "truffle": "^3.4.11"
+  }
 }

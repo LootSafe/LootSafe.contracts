@@ -7,7 +7,7 @@ contract Meta {
   address public owner;
   uint256 public created;
 
-  function Meta () {
+  function Meta () public {
     owner = msg.sender;
     created = now;
   }

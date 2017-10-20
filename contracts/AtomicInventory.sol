@@ -14,7 +14,7 @@ import "./Meta.sol";
 contract AtomicInventory is Meta, Trade {
   mapping(bytes8 => address) items;
 
-  function AtomicInventory () {
+  function AtomicInventory () public {
     owner = msg.sender;
     created = now;
   }

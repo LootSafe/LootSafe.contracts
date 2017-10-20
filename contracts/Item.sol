@@ -18,7 +18,7 @@ contract Item is StandardToken {
     _;
   }
 
-  function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, bytes32 _metadata) {
+  function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, bytes32 _metadata) public {
     name = _name;                         // Human readable name of the item
     id = _id;                             // Computer readable name of the item
     decimals = 0;                         // You can't trade a fraction of an item. (Sorry exchanges, no fees move on.)
@@ -32,13 +32,13 @@ contract Item is StandardToken {
   }
 
   // Only to be called by Inventory, by a user
-  function despawn (uint256 amount, address _from) onlyOwner {
+  function despawn (uint256 amount, address _from) public onlyOwner {
     balances[_from] -= amount; // Burned
   }
   
   // Disable all future spawning of this item
   // Final supply dictates how many items were ever in circulation
-  function clearAvailability () onlyOwner {
+  function clearAvailability () public onlyOwner {
     finalSupply = totalSupply - balances[owner];
     balances[owner] = 0;
   }
