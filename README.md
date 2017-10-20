@@ -17,3 +17,19 @@ Trading is built into the platform and an on chain "auction house" stlye method 
 ## Notice
 
 The project is still under heavy development and more updates will come, for now the platform is being fleshed out on https://8bit.network
+
+
+### Test Coverage
+```
+  Contract: AtomicInventory
+    ✓ should deploy a contract
+    ✓ should deploy items (40ms)
+    ✓ should send items (150ms)
+    ✓ should despawn items (167ms)
+    ✓ should clear availability of items (153ms)
+
+  Contract: Item
+    ✓ should deploy a contract (65ms)
+    ✓ should give owner balance
+    ✓ should exchange balances (144ms)
+```
