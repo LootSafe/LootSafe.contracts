@@ -6,13 +6,26 @@ Atomic Inventory, in short, stores your in game inventory on the blockchain. Gre
 
 The benifit to using this platform is to reward players for interaction with the network of servers we run, building a strong inventory (redeemable once per server, per wipe) will incentivize sticking around on our network vs leaving for another server. Although the benifit is not just within the network, the player also gets to hold on to their hours of grinding for items in game, in the form of cryptocurrencies, more on that below.
 
+
 ## Items
 
 Items are ERC20 contracts, what this means in in your favorite wallets can hold your actual in game items, yeah... boom. So continuing the example above you might have a contract address 0x01245 which is the Stone Pickaxe. This item is tradable just like any other ERC20 token (which can be done internally expalined below). Some items may not directly relate to a game and may be limited release items such as enchantments which enhance your character on the server, or benifits on the network. 
 
+
 ## Trading
 
 Trading is built into the platform and an on chain "auction house" stlye method of trading can be created, and exchanges will happen fast and cheaply, no need to deal with traditional exchanges. Simply place the item you'd like to trade into the auction house, specify how many of that item you're looking to trade, and what item(s) you'd like for it! Then another player that owns the item you want can fulfill this trade.
+
+
+## LootBox
+
+The lootbox contract is funded by the AtomicInventory owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by one of two methods (yet to be determined), Sending ETH to the Loot Box contract, or sending our Atomi Utility Token which can be earned by playing on our servers!
+
+
+## Atomi Token
+
+Atomi can be earned by plaing on servers supported by our network, you will received a fixed amount of Atomi for every minute played on our servers. The Atomi Utility Token can be used for many things across our network from opening Loot Boxes to purchasing items from our Seller contract (TBD).
+
 
 ## Notice
 
