@@ -8,7 +8,7 @@ The benifit to using this platform is to reward players for interaction with the
 
 ## Items
 
-Items are ERC20 contracts, what this means in in your favorite wallets can hold your actual in game items, yeah... boom. So continuing the example above you might have a contract address 0x01245 which is the Stone Pickaxe. This item is tradable just like any other ERC20 token (which can be done internally expalined below). Some items may not directly relate to a game and may be limited release items such as enchantments which enhance your character on the server. 
+Items are ERC20 contracts, what this means in in your favorite wallets can hold your actual in game items, yeah... boom. So continuing the example above you might have a contract address 0x01245 which is the Stone Pickaxe. This item is tradable just like any other ERC20 token (which can be done internally expalined below). Some items may not directly relate to a game and may be limited release items such as enchantments which enhance your character on the server, or benifits on the network. 
 
 ## Trading
 
