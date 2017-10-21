@@ -33,6 +33,8 @@ Trading is built into the platform and an on chain "auction house" stlye method 
 The lootbox contract is funded by the AtomicInventory owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by one of two methods (yet to be determined), Sending ETH to the Loot Box contract, or sending our Atomi Utility Token which can be earned by playing on our servers!
 
 
+<img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="60" />
+
 ## Atomi Token
 
 Atomi can be earned by plaing on servers supported by our network, you will received a fixed amount of Atomi for every minute played on our servers. The Atomi Utility Token can be used for many things across our network from opening Loot Boxes to purchasing items from our Seller contract (TBD).
