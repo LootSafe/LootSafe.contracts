@@ -9,7 +9,7 @@ The benifit to using this platform is to reward players for interaction with the
 
 
 
-<img src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" data-canonical-src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" width="60" align="left" />
+<img src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" data-canonical-src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" width="60" align="right" />
 
 ## Items
 
@@ -18,7 +18,7 @@ Items are ERC20 contracts, what this means in in your favorite wallets can hold 
 
 
 
-<img src="http://icons.iconarchive.com/icons/aha-soft/large-home/512/Retail-shop-icon.png" data-canonical-src="http://icons.iconarchive.com/icons/aha-soft/large-home/512/Retail-shop-icon.png" width="60" align="left" />
+<img src="http://icons.iconarchive.com/icons/aha-soft/large-home/512/Retail-shop-icon.png" data-canonical-src="http://icons.iconarchive.com/icons/aha-soft/large-home/512/Retail-shop-icon.png" width="60" align="right" />
 
 ## Trading
 
@@ -26,14 +26,14 @@ Trading is built into the platform and an on chain "auction house" stlye method 
 
 
 
-<img src="https://netdna.webdesignerdepot.com/uploads6/creative-app-icons/03-app.jpg" data-canonical-src="https://netdna.webdesignerdepot.com/uploads6/creative-app-icons/03-app.jpg" width="60" align="left" />
+<img src="https://netdna.webdesignerdepot.com/uploads6/creative-app-icons/03-app.jpg" data-canonical-src="https://netdna.webdesignerdepot.com/uploads6/creative-app-icons/03-app.jpg" width="60" align="right" />
 
 ## Loot Box
 
 The lootbox contract is funded by the AtomicInventory owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by one of two methods (yet to be determined), Sending ETH to the Loot Box contract, or sending our Atomi Utility Token which can be earned by playing on our servers!
 
 
-<img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="60" align="left" />
+<img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="60" align="right" />
 
 ## Atomi Token
 
