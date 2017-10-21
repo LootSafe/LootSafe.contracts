@@ -4,12 +4,12 @@ const gasPrice = 4700000
 
 contract('AtomicInventory', (accounts) => {
   it('should deploy a contract', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
+    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
     if (atomicInventoryInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should deploy items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
+    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
     
     atomicInventoryInstance.createItem(
       "Sword",
@@ -24,7 +24,7 @@ contract('AtomicInventory', (accounts) => {
   })
 
   it('should send items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
+    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
 
     const createItem = await atomicInventoryInstance.createItem(
       "Sword",
@@ -53,7 +53,7 @@ contract('AtomicInventory', (accounts) => {
   })
 
   it('should despawn items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
+    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
 
     const createItem = await atomicInventoryInstance.createItem(
       "Sword",
@@ -91,7 +91,7 @@ contract('AtomicInventory', (accounts) => {
   })
 
   it('should clear availability of items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
+    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
 
     const createItem = await atomicInventoryInstance.createItem(
       "Sword",

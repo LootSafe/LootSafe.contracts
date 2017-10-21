@@ -19,9 +19,9 @@ contract AtomicInventory is Meta, Trade, LootBox {
   // Emitted when a new item is created
   event ItemCreated(address itemAddress);
   // Emitted when an item is no longer avail for distrobution from AtomicInv
-  event ItemDelisted(address itemAddress, bytes8 name);
+  event ItemDelisted(address itemAddress, bytes16 name);
   // New item given out to user from AtomicInv
-  event ItemSpawned(address itemAddress, bytes8 name, address to);
+  event ItemSpawned(address itemAddress, bytes16 name, address to);
   // Item was trashed by user, thus total supply is down
   event ItemDespawned(address itemAddress, address from, uint256 amount);
 
@@ -41,6 +41,7 @@ contract AtomicInventory is Meta, Trade, LootBox {
   )
     public 
     onlyOwner 
+    returns (address _itemAddress)
   {
     // No duplicate item names
     require(items[_name] == 0x0);
@@ -57,6 +58,8 @@ contract AtomicInventory is Meta, Trade, LootBox {
     itemNames.push(_name);
     items[_name] = itemAddress;
     ItemCreated(itemAddress);
+
+    return (itemAddress);
   }
 
   // Send an item from the available pool to a user
@@ -66,12 +69,12 @@ contract AtomicInventory is Meta, Trade, LootBox {
   }
 
   // Get an item name by address
-  function getItem (bytes8 name) public returns (address itemAddress) {
+  function getItem (bytes8 name) constant public returns (address itemAddress) {
     return items[name];
   }
 
   // Get all items
-  function getItems () public returns (bytes8[] _itemNames) {
+  function getItems () constant public returns (bytes8[] _itemNames) {
     return itemNames;
   }
 
