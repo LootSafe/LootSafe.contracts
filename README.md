@@ -7,6 +7,7 @@ Atomic Inventory, in short, stores your in game inventory on the blockchain. Gre
 The benifit to using this platform is to reward players for interaction with the network of servers we run, building a strong inventory (redeemable once per server, per wipe) will incentivize sticking around on our network vs leaving for another server. Although the benifit is not just within the network, the player also gets to hold on to their hours of grinding for items in game, in the form of cryptocurrencies, more on that below.
 
 
+<img src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" data-canonical-src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" width="50" />
 ## Items
 
 Items are ERC20 contracts, what this means in in your favorite wallets can hold your actual in game items, yeah... boom. So continuing the example above you might have a contract address 0x01245 which is the Stone Pickaxe. This item is tradable just like any other ERC20 token (which can be done internally expalined below). Some items may not directly relate to a game and may be limited release items such as enchantments which enhance your character on the server, or benifits on the network. 
