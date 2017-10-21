@@ -3,6 +3,7 @@ pragma solidity ^0.4.8;
 import "./Item.sol";
 import "./Trade.sol";
 import "./Meta.sol";
+import "./LootBox.sol";
 
 //             /\
 // /vvvvvvvvvvvv \--------------------------------------,
@@ -41,7 +42,7 @@ contract AtomicInventory is Meta, Trade {
     onlyOwner 
   {
     // No duplicate item names
-//TODO:    require(!items[_name]);
+    require(items[_name] == 0x0);
 
     address itemAddress = address(
       new Item(

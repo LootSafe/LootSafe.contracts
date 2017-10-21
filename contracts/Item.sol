@@ -38,7 +38,7 @@ contract Item is StandardToken {
     totalSupply -= amount;
     balances[_from] -= amount; // Burned
   }
-  
+
   // Disable all future spawning of this item
   // Final supply dictates how many items were ever in circulation
   function clearAvailability () public onlyOwner {

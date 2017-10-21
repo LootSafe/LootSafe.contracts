@@ -14,6 +14,7 @@ contract Trade {
     uint offerAmount;           // This is how many of item the trader is offering
     uint desiredAmount;         // This is how many of the item the tradee is offering
     uint256 created;            // This is the creation date of the trade proposal
+    bool exists;                // Prevent collision
     bool fulfilled;             // Have both parties agreed, aka if so the order has been fulfilled
   }
 
@@ -45,6 +46,11 @@ contract Trade {
       Item(_offer).balanceOf(msg.sender) >= _offerAmount
     );
 
+    // Prevent overwriting existing trades
+    require(
+      !trades[msg.sender][_tradeId].exists
+    );
+
     TradeEvent(
       msg.sender,
       _tradeId,
@@ -65,6 +71,7 @@ contract Trade {
       desired: _desired,
       desiredAmount: _desiredAmount,
       created: now,
+      exists: true,
       fulfilled: false
     });
   }
@@ -80,7 +87,7 @@ contract Trade {
   }
 
   // Get a trade that a merchant has listed
-  function getTrade (address merchant, bytes8 tradeId) public returns (
+  function getTrade (address merchant, bytes8 tradeId) constant public returns (
     bytes8 _tradeId,
     address offer,
     address desiredItem,
@@ -100,7 +107,7 @@ contract Trade {
   }
 
   // Get a list of trade id's a merchant has
-  function getTrades (address merchant) public returns (bytes8[] ids) {
+  function getTrades (address merchant) constant public returns (bytes8[] ids) {
     return (
       tradeIds[merchant]
     );
