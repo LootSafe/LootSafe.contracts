@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="150" />
+<img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="150" align="left" />
 
 # AtomicInventory
 
