@@ -14,6 +14,6 @@ module.exports = function(deployer) {
   deployer.deploy(Trade, { gas: gasPrice })
   deployer.deploy(LootBox, { gas: gasPrice })
   deployer.deploy(AtomicInventory, { gas: gasPrice })
-  deployer.link(AtomicInventory, Meta, Trade)
+  deployer.link(AtomicInventory, Meta, Trade, LootBox)
   deployer.link(StandardToken, Item)
 }

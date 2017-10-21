@@ -3,23 +3,13 @@ pragma solidity ^0.4.8;
 // This should house standard information about the contract stack
 // It should aslo house shared modifiers
 import "./Item.sol";
+import "./Meta.sol";
 
-contract LootBox {
-  address public owner;
-  uint256 public created;
-  
+contract LootBox is Meta {
+  uint256 public cost;
+
   // Rarities common, uncommon, rare, legendary
   mapping(bytes8 => address[]) items;
-
-  modifier onlyOwner {
-    require(msg.sender == owner);
-    _;
-  }
-
-  function LootBox () public {
-    owner = msg.sender;
-    created = now;
-  }
 
   function randomNumber (uint ceiling) constant internal returns (uint generatedNumber) {
     return (uint(block.blockhash(block.number - 1)) % ceiling + 1);
@@ -46,13 +36,13 @@ contract LootBox {
     }
   }
 
-  function openBox () public returns (address item) {
+  function openBox (address _to) internal returns (address item) {
     bytes8 rarity = chooseRarity();
     uint index = randomNumber(rarity.length);
     address earnedItem = items[rarity][index];
 
     // Send them the item
-    Item(earnedItem).transfer(msg.sender, 1);
+    Item(earnedItem).transfer(_to, 1);
 
     // If we don't have enough items for future openings, delete them from the loot table
     if (Item(earnedItem).balanceOf(this) >= 1) {
@@ -60,5 +50,11 @@ contract LootBox {
     }
 
     return earnedItem;
+  }
+
+  function () public payable {
+    if (msg.value == cost) {
+      openBox(msg.sender);
+    }
   }
 }

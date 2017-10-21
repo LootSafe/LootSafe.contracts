@@ -12,7 +12,7 @@ import "./LootBox.sol";
 // This contract represents an item on the network
 // The item can be traded in the same way as a standard ERC20 contract
 
-contract AtomicInventory is Meta, Trade {
+contract AtomicInventory is Meta, Trade, LootBox {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
 
@@ -25,8 +25,9 @@ contract AtomicInventory is Meta, Trade {
   // Item was trashed by user, thus total supply is down
   event ItemDespawned(address itemAddress, address from, uint256 amount);
 
-  function AtomicInventory () public {
+  function AtomicInventory (uint256 lootBoxCost) public {
     owner = msg.sender;
+    cost = lootBoxCost;
     created = now;
   }
 
