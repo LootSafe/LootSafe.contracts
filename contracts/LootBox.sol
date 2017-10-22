@@ -28,15 +28,26 @@ contract LootBox is Meta {
     return (items[rarity]);
   }
 
-  // TODO: before mainnet, this needs to not be so psuedo random
-  function randomNumber (uint ceiling) constant internal returns (uint generatedNumber) {
-    return (uint(block.blockhash(block.number - 1)) % ceiling + 1);
+  // For transparency reasons, make it easy to obtain chances
+  function getChances () constant public returns (uint _epicChance, uint _rareChance, uint _uncommonChance) {
+    return (
+      epicChance,
+      rareChance,
+      uncommonChance
+    );
   }
 
   // Change lootbox price, only to be done by owner
   function updateLootBoxCost (uint256 _cost) public onlyOwner {
     CostUpdated(_cost);
     lootBoxCost = _cost;
+  }
+
+  // Update the chances of getting a loot box in each rarity
+  function updateChance (uint _epicChance, uint _rareChance, uint _uncommonChance) public onlyOwner {
+    epicChance = _epicChance;
+    rareChance = _rareChance;
+    uncommonChance = _uncommonChance;
   }
 
   // Add an item to the  loot table
@@ -61,20 +72,9 @@ contract LootBox is Meta {
     LootBoxItemAdded(item);
   }
 
-  // For transparency reasons, make it easy to obtain chances
-  function getChances () constant public returns (uint _epicChance, uint _rareChance, uint _uncommonChance) {
-    return (
-      epicChance,
-      rareChance,
-      uncommonChance
-    );
-  }
-
-  // Update the chances of getting a loot box in each rarity
-  function updateChance (uint _epicChance, uint _rareChance, uint _uncommonChance) public onlyOwner {
-    epicChance = _epicChance;
-    rareChance = _rareChance;
-    uncommonChance = _uncommonChance;
+  // TODO: before mainnet, this needs to not be so psuedo random
+  function randomNumber (uint ceiling) constant internal returns (uint generatedNumber) {
+    return (uint(block.blockhash(block.number - 1)) % ceiling + 1);
   }
 
   // Choose rarity of  loot box

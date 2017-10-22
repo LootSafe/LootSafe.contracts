@@ -94,6 +94,13 @@ contract Trade is Meta {
     return tradeCost;
   }
 
+  // Get a list of trade id's a merchant has
+  function getTrades (address merchant) constant public returns (bytes8[] ids) {
+    return (
+      tradeIds[merchant]
+    );
+  }
+
   // Exchange items between merchant and customer
   function exchange (address item, address merchant, address customer, uint amount) internal {
     Item(item).exchange(
@@ -123,12 +130,6 @@ contract Trade is Meta {
     );
   }
 
-  // Get a list of trade id's a merchant has
-  function getTrades (address merchant) constant public returns (bytes8[] ids) {
-    return (
-      tradeIds[merchant]
-    );
-  }
 
   function fulfillTrade (bytes8 id, address merchant) public {
     Handshake storage trade = trades[merchant][id];

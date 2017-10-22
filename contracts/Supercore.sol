@@ -75,10 +75,9 @@ contract Supercore is Meta, Trade, LootBox {
     return (itemAddress);
   }
 
-  // Send an item from the available pool to a user
-  function spawnItem (bytes8 name, address to) public onlyOwner {
-    ItemSpawned(items[name], name, to);
-    Item(items[name]).transfer(to, 1);
+  // Get address of Core Token
+  function getTokenAddress () constant public returns (address _tokenAddress) {
+    return tokenAddress;
   }
 
   // Get an item name by address
@@ -89,6 +88,12 @@ contract Supercore is Meta, Trade, LootBox {
   // Get all items
   function getItems () constant public returns (bytes8[] _itemNames) {
     return itemNames;
+  }
+
+  // Send an item from the available pool to a user
+  function spawnItem (bytes8 name, address to) public onlyOwner {
+    ItemSpawned(items[name], name, to);
+    Item(items[name]).transfer(to, 1);
   }
 
   // This can only be done by the user, and is likely done only for athestetic reasons (or you burn expensive stuff like a madman).
@@ -108,11 +113,6 @@ contract Supercore is Meta, Trade, LootBox {
     require(CoreToken(tokenAddress).balanceOf(this) >= amount);
     TokenIssued(to, amount);
     CoreToken(tokenAddress).transfer(to, amount);
-  }
-
-  // Get address of Core Token
-  function getTokenAddress () constant public returns (address _tokenAddress) {
-    return tokenAddress;
   }
 
   // 0 ETH transaction triggers opening of a lootbox

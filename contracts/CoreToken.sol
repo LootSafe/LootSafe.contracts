@@ -26,6 +26,11 @@ contract CoreToken is StandardToken {
     vault = _vault;                               // The vault recycles tokens used in the system for resale
   }
 
+  // This balance is the amount of token available for resell
+  function getVaultBalance () constant public returns (uint256 balance) {
+    return vault;
+  }
+
   // Used in lootboxes and other parts of the platform to execute fuctions using our Core Utility Token
   function verifyAndDeduct (address _from, uint256 amount) public onlyOwner returns (bool verified) {
     require(balances[_from] >= amount);
