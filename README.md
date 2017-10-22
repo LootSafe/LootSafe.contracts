@@ -33,7 +33,7 @@ Trading is built into the platform and an on chain "auction house" style method 
 The lootbox contract is funded by the Supercore owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by one of two methods (yet to be determined), Sending ETH to the Loot Box contract, or sending our Core Utility Token which can be earned by playing on our servers!
 
 
-<img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="60" align="right" />
+<img src="https://i.imgur.com/ZmPJjbK.png" data-canonical-src="https://i.imgur.com/ZmPJjbK.png" width="60" align="right" />
 
 ## Core Token
 
