@@ -16,14 +16,14 @@ contract CoreToken is StandardToken {
   }
 
   function CoreToken (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _vault) public {
-    name = _name;
-    decimals = _decimals;
-    symbol = _symbol;
-    totalSupply = _totalSupply;
-    balances[msg.sender] = _totalSupply - _vault;
-    created = now;
-    owner = msg.sender;
-    vault = _vault;
+    name = _name;                                 // Human friendly name of contract
+    decimals = _decimals;                         // Decimals (18)
+    symbol = _symbol;                             // Symbol for the contract (CORE)
+    totalSupply = _totalSupply;                   // Total Supply (100,000,000)
+    balances[msg.sender] = _totalSupply - _vault; // Balance is equal to totalSupply - vault
+    created = now;                                // Right meow
+    owner = msg.sender;                           // Das me
+    vault = _vault;                               // The vault recycles tokens used in the system for resale
   }
 
   // Used in lootboxes and other parts of the platform to execute fuctions using our Core Utility Token

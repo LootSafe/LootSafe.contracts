@@ -14,6 +14,7 @@ contract Item is StandardToken {
   uint256 public finalSupply;
   uint256 public vault; // Recycled tokens, available for purchase
 
+  // Internal exchange was issued
   event Exchange(address trader, address receiver, uint256 amount);
 
   modifier onlyOwner {
@@ -22,22 +23,22 @@ contract Item is StandardToken {
   }
 
   function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, bytes32 _metadata) public {
-    name = _name;                         // Human readable name of the item
-    id = _id;                             // Computer readable name of the item
-    decimals = 0;                         // You can't trade a fraction of an item. (Sorry exchanges, no fees move on.)
-    symbol = "SAVE";                      // All items are Standard Network Items
-    totalSupply = _totalSupply;           // Total amount of items ever available
-    skin = _skin;                         // Optional skin on the item
-    metadata = _metadata;                 // Extra data storage for item
+    name = _name;                                 // Human readable name of the item
+    id = _id;                                     // Computer readable name of the item
+    decimals = 0;                                 // You can't trade a fraction of an item. (Sorry exchanges, no fees move on.)
+    symbol = "SAVE";                              // All items are Standard Network Items
+    totalSupply = _totalSupply;                   // Total amount of items ever available
+    skin = _skin;                                 // Optional skin on the item
+    metadata = _metadata;                         // Extra data storage for item
     balances[msg.sender] = _totalSupply - vault;  // Give all the items to Inventory for now
-    created = now;                        // Timestamp
-    owner = msg.sender;                   // This is more than likely Inventory
+    created = now;                                // Timestamp
+    owner = msg.sender;                           // This is more than likely Inventory
   }
 
   // Only to be called by Inventory, by a user
   function despawn (uint256 amount, address _from) public onlyOwner {
-    totalSupply -= amount;
-    balances[_from] -= amount; // Burned
+    totalSupply -= amount;                        // Remove from total supply since it will be burned
+    balances[_from] -= amount;                    // Burned
   }
 
   // Disable all future spawning of this item
