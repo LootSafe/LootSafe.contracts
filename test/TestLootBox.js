@@ -151,4 +151,19 @@ contract('Supercore', (accounts) => {
     if (items.length < 3) throw new Error('items not listing correctly')
     if (supercoreInstance.address === undefined) throw new Error('deployment failed')
   })
+
+  it('should get loot box odds', async () => {
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
+
+    const lootBoxChances = await supercoreInstance.getChances.call()
+
+    if (lootBoxChances.length < 3) throw new Error('loot box chances not fetched')
+  })
 })

@@ -33,8 +33,15 @@ contract LootBox is Meta {
 
   // Add an item to the  loot table
   function addItem (address item, bytes8 rarity) public onlyOwner {
-    // TODO: Make sure item is not already added
+    // Make sure item does not already exist in array
+    bool exists;
+    for (uint i = 0; i < items[rarity].length; i++) {
+      if (items[rarity][i] == item) {
+        exists = true;
+      }
+    }
 
+    require(!exists);
     // Make sure we own enough of the item that we're adding
     require(Item(item).balanceOf(this) >= 1);
     // Okay we have enough
