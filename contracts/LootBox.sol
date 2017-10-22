@@ -62,13 +62,11 @@ contract LootBox is Meta {
 
     // No duplicate items
     require(!exists);
-
     // Make sure we own enough of the item that we're adding
     require(Item(item).balanceOf(this) >= 1);
-
     // Okay we have enough
     items[rarity].push(item);
-
+    // Let the world know we've added a new item
     LootBoxItemAdded(item);
   }
 
@@ -110,6 +108,7 @@ contract LootBox is Meta {
       delete items[rarity][index];
     }
 
+    // Let the world know a lootbox was opened
     LootBoxOpened(_to, rarity, earnedItem);
 
     return earnedItem;

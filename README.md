@@ -53,6 +53,55 @@ The vault houses all available tokens for sale, this is a fixed amount that once
 The project is still under heavy development and more updates will come, for now the platform is being fleshed out on https://8bit.network
 
 
+## Events 
+
+### Item.sol
+#### `event Exchange(address trader, address receiver, uint256 amount);`
+Emitted when an iternal exchange happenes
+
+
+### LootBox.sol
+#### `event LootBoxOpened(address by, bytes8 rarity, address item);`
+Emitted when a loot box is opened
+
+#### `event CostUpdated(uint cost);`
+Cost to open loot box updated by owner
+
+### `event LootBoxItemAdded(address item);`
+New loot is added to the loot boxes
+
+
+### Supercore.sol
+#### `event ItemCreated(address itemAddress);`
+Emitted when a new item is created
+
+#### `event ItemDelisted(address itemAddress, bytes16 name);`
+Emitted when an item is no longer avail
+
+#### `event ItemSpawned(address itemAddress, bytes16 name, address to);`
+Item given out to user by core
+
+### `event ItemDespawned(address itemAddress, address from, uint256 amount);`
+Item was burned by a user
+
+### `TokenIssued(address to, uint256 amount);`
+Token issued to address
+
+### Trade.sol
+```
+  event TradeEvent(
+    address merchant,
+    bytes8 tradeId,
+    address offer,
+    address desired,
+    uint256 offerAmount,
+    uint256 desiredAmount,
+    bool fulfilled
+  );
+```
+Emitted when a trade is listed, and when it's fulfilled
+
+
 ## Test Settings
 
 ```js
@@ -94,4 +143,7 @@ Supercore.new(
 
   14 passing (4s)
 ```
+
+
+
 
