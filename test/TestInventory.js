@@ -1,17 +1,17 @@
-const AtomicInventory = artifacts.require('AtomicInventory.sol')
+const Supercore = artifacts.require('Supercore.sol')
 const Item = artifacts.require('Item.sol')
 const gasPrice = 4700000
 
-contract('AtomicInventory', (accounts) => {
+contract('Supercore', (accounts) => {
   it('should deploy a contract', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
-    if (atomicInventoryInstance.address === undefined) throw new Error('deployment failed')
+    const supercoreInstance = await Supercore.new(3310000000000000)
+    if (supercoreInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should deploy items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(3310000000000000)
     
-    atomicInventoryInstance.createItem(
+    supercoreInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -24,9 +24,9 @@ contract('AtomicInventory', (accounts) => {
   })
 
   it('should send items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(3310000000000000)
 
-    const createItem = await atomicInventoryInstance.createItem(
+    const createItem = await supercoreInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -35,13 +35,13 @@ contract('AtomicInventory', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await atomicInventoryInstance.spawnItem(
+    const spawnItem = await supercoreInstance.spawnItem(
       "Sword",
       accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await atomicInventoryInstance.getItem.call(
+    const itemAddress = await supercoreInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
@@ -53,9 +53,9 @@ contract('AtomicInventory', (accounts) => {
   })
 
   it('should despawn items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(3310000000000000)
 
-    const createItem = await atomicInventoryInstance.createItem(
+    const createItem = await supercoreInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -64,20 +64,20 @@ contract('AtomicInventory', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await atomicInventoryInstance.spawnItem(
+    const spawnItem = await supercoreInstance.spawnItem(
       "Sword",
       accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await atomicInventoryInstance.getItem.call(
+    const itemAddress = await supercoreInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
     const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
 
-    const despawnTx = await atomicInventoryInstance.despawnItem(
+    const despawnTx = await supercoreInstance.despawnItem(
       "Sword",
       1,
       {gas: gasPrice, from: accounts[1]}
@@ -91,9 +91,9 @@ contract('AtomicInventory', (accounts) => {
   })
 
   it('should clear availability of items', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(3310000000000000)
 
-    const createItem = await atomicInventoryInstance.createItem(
+    const createItem = await supercoreInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -102,18 +102,18 @@ contract('AtomicInventory', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await atomicInventoryInstance.getItem.call(
+    const itemAddress = await supercoreInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const inventoryBalance = await Item.at(itemAddress).balanceOf.call(atomicInventoryInstance.address)
-    const despawnTx = await atomicInventoryInstance.clearAvailability(
+    const inventoryBalance = await Item.at(itemAddress).balanceOf.call(supercoreInstance.address)
+    const despawnTx = await supercoreInstance.clearAvailability(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const inventoryBalanceAfterClear = await Item.at(itemAddress).balanceOf.call(atomicInventoryInstance.address)
+    const inventoryBalanceAfterClear = await Item.at(itemAddress).balanceOf.call(supercoreInstance.address)
     
     if (!itemAddress) throw new Error('item address not returned')
     if (!inventoryBalance.gt(0)) throw new Error('item not registered correctly')

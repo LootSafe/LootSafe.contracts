@@ -12,20 +12,20 @@ import "./LootBox.sol";
 // This contract represents an item on the network
 // The item can be traded in the same way as a standard ERC20 contract
 
-contract AtomicInventory is Meta, Trade, LootBox {
+contract Supercore is Meta, Trade, LootBox {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
 
   // Emitted when a new item is created
   event ItemCreated(address itemAddress);
-  // Emitted when an item is no longer avail for distrobution from AtomicInv
+  // Emitted when an item is no longer avail for distrobution from Supercore
   event ItemDelisted(address itemAddress, bytes16 name);
-  // New item given out to user from AtomicInv
+  // New item given out to user from Supercore
   event ItemSpawned(address itemAddress, bytes16 name, address to);
   // Item was trashed by user, thus total supply is down
   event ItemDespawned(address itemAddress, address from, uint256 amount);
 
-  function AtomicInventory (uint256 lootBoxCost) public {
+  function Supercore (uint256 lootBoxCost) public {
     owner = msg.sender;
     cost = lootBoxCost;
     created = now;

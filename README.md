@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="150" />
 
-# AtomicInventory
+# Supercore
 
 Atomic Inventory, in short, stores your in game inventory on the blockchain. Great, why? Well what this allows us to do is sync your inventory across multiple games. This task would be easy, swapping item for item, if all game developers supported this platform, but expecting that right away is unrealistic. Thus, we're building off-chain methods to swap these items for close equivleants in each game, for instance a Stone Pickaxe in Minecraft, will be a Stone Pickaxe in Rust, and a Stone Pickaxe in Ark, etc. But items like Diamond swords might become Steel Swords in Ark, or a mele weapon in Rust. 
 
@@ -35,9 +35,9 @@ The lootbox contract is funded by the AtomicInventory owner for possible rewards
 
 <img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="60" />
 
-## Atomi Token
+## Core Token
 
-Atomi can be earned by plaing on servers supported by our network, you will received a fixed amount of Atomi for every minute played on our servers. The Atomi Utility Token can be used for many things across our network from opening Loot Boxes to purchasing items from our Seller contract (TBD).
+Core can be earned by plaing on servers supported by our network, you will received a fixed amount of Atomi for every minute played on our servers. The Core Utility Token can be used for many things across our network from opening Loot Boxes to purchasing items from our Seller contract (TBD).
 
 
 ## Notice
@@ -47,23 +47,28 @@ The project is still under heavy development and more updates will come, for now
 
 ### Test Coverage
 ```
-  Contract: AtomicInventory
-    ✓ should deploy a contract
-    ✓ should deploy items (44ms)
-    ✓ should send items (174ms)
-    ✓ should despawn items (203ms)
-    ✓ should clear availability of items (160ms)
+   Contract: Supercore
+    ✓ should deploy a contract (48ms)
+    ✓ should deploy items (57ms)
+    ✓ should send items (194ms)
+    ✓ should despawn items (210ms)
+    ✓ should clear availability of items (185ms)
 
   Contract: Item
     ✓ should deploy a contract (43ms)
-    ✓ should give owner balance
-    ✓ should exchange balances (101ms)
+    ✓ should give owner balance (46ms)
+    ✓ should exchange balances (115ms)
 
-  Contract: AtomicInventory (Trade)
-    ✓ should deploy a contract (43ms)
-    ✓ should should list and fulfill trades (459ms)
-    ✓ should should list all of a users trades (321ms)
+  Contract: Supercore
+    ✓ should deploy a contract (47ms)
+    ✓ should open a loot box (1708ms)
+    ✓ should should show items in loot boxes (413ms)
+
+  Contract: Supercore
+    ✓ should deploy a contract (42ms)
+    ✓ should should list and fulfill trades (605ms)
+    ✓ should should list all of a users trades (471ms)
 
 
-  11 passing (2s)
+  14 passing (4s)
 ```

@@ -11,8 +11,7 @@ contract LootBox is Meta {
   // Rarities common, uncommon, rare, legendary
   mapping(bytes8 => address[]) items;
 
-  // TODO: get all items in loot table
-  function getItems (bytes8 rarity) constant public returns (address[] itemAddresses) {
+  function getLootBoxItems (bytes8 rarity) constant public returns (address[] itemAddresses) {
     return (items[rarity]);
   }
 

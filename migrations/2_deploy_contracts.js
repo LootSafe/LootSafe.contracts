@@ -3,7 +3,7 @@ const Meta = artifacts.require("./Meta.sol")
 const Trade = artifacts.require("./Trade.sol")
 const LootBox = artifacts.require("./LootBox.sol")
 const StandardToken = artifacts.require("./ERC20/StandardToken.sol")
-const AtomicInventory = artifacts.require("./AtomicInventory.sol")
+const Supercore = artifacts.require("./Supercore.sol")
 
 const gasPrice = 4700000
 
@@ -13,7 +13,7 @@ module.exports = function(deployer) {
   deployer.deploy(Meta, { gas: gasPrice })
   deployer.deploy(Trade, { gas: gasPrice })
   deployer.deploy(LootBox, { gas: gasPrice })
-  deployer.deploy(AtomicInventory, { gas: gasPrice })
-  deployer.link(AtomicInventory, Meta, Trade, LootBox)
+  deployer.deploy(Supercore, { gas: gasPrice })
+  deployer.link(Supercore, Meta, Trade, LootBox)
   deployer.link(StandardToken, Item)
 }

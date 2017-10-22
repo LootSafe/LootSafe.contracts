@@ -1,17 +1,17 @@
-const AtomicInventory = artifacts.require('AtomicInventory.sol')
+const Supercore = artifacts.require('Supercore.sol')
 const Item = artifacts.require('Item.sol')
 const gasPrice = 4700000
 
-contract('AtomicInventory', (accounts) => {
+contract('Supercore', (accounts) => {
   it('should deploy a contract', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
-    if (atomicInventoryInstance.address === undefined) throw new Error('deployment failed')
+    const supercoreInstance = await Supercore.new()
+    if (supercoreInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should should list and fulfill trades', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
+    const supercoreInstance = await Supercore.new()
 
-    const sword = await atomicInventoryInstance.createItem(
+    const sword = await supercoreInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -20,7 +20,7 @@ contract('AtomicInventory', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shield = await atomicInventoryInstance.createItem(
+    const shield = await supercoreInstance.createItem(
       "Shield",
       "basic_shield",
       10000,
@@ -30,24 +30,24 @@ contract('AtomicInventory', (accounts) => {
     )
 
 
-    const swordAddress = await atomicInventoryInstance.getItem.call(
+    const swordAddress = await supercoreInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shieldAddress = await atomicInventoryInstance.getItem.call(
+    const shieldAddress = await supercoreInstance.getItem.call(
       "Shield",
       {gas: gasPrice, from: accounts[0]}
     )
 
 
-    const giveMeSword = await atomicInventoryInstance.spawnItem(
+    const giveMeSword = await supercoreInstance.spawnItem(
       "Sword",
       accounts[0],
       {from: accounts[0]}
     )
 
-    const giveThemShield = await atomicInventoryInstance.spawnItem(
+    const giveThemShield = await supercoreInstance.spawnItem(
       "Shield",
       accounts[2],
       {from: accounts[0]}
@@ -56,7 +56,7 @@ contract('AtomicInventory', (accounts) => {
     const swordOwnerBal = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const shieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
     
-    const startTrade = await atomicInventoryInstance.newTrade(
+    const startTrade = await supercoreInstance.newTrade(
       "SwordForShield",
       swordAddress,
       shieldAddress,
@@ -65,17 +65,17 @@ contract('AtomicInventory', (accounts) => {
       {from: accounts[0]}
     )
 
-    const trade = await atomicInventoryInstance.getTrade.call(accounts[0], "SwordForShield")
+    const trade = await supercoreInstance.getTrade.call(accounts[0], "SwordForShield")
 
     if (!trade) throw new Error('coulnt start a new trade')
 
     // fulfill trade
-    const fulfillTrade = await atomicInventoryInstance.fulfillTrade(
+    const fulfillTrade = await supercoreInstance.fulfillTrade(
       "SwordForShield",
       accounts[0],
       { from: accounts[2] }
     )
-    const tradeFulfilled = await atomicInventoryInstance.getTrade.call(accounts[0], "SwordForShield")
+    const tradeFulfilled = await supercoreInstance.getTrade.call(accounts[0], "SwordForShield")
     
     const newSwordOwnerBal = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const newShieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
@@ -90,9 +90,9 @@ contract('AtomicInventory', (accounts) => {
   })
 
   it('should should list all of a users trades', async () => {
-    const atomicInventoryInstance = await AtomicInventory.new()
+    const supercoreInstance = await Supercore.new()
 
-    const sword = await atomicInventoryInstance.createItem(
+    const sword = await supercoreInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -101,7 +101,7 @@ contract('AtomicInventory', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shield = await atomicInventoryInstance.createItem(
+    const shield = await supercoreInstance.createItem(
       "Shield",
       "basic_shield",
       10000,
@@ -111,24 +111,24 @@ contract('AtomicInventory', (accounts) => {
     )
 
 
-    const swordAddress = await atomicInventoryInstance.getItem.call(
+    const swordAddress = await supercoreInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shieldAddress = await atomicInventoryInstance.getItem.call(
+    const shieldAddress = await supercoreInstance.getItem.call(
       "Shield",
       {gas: gasPrice, from: accounts[0]}
     )
 
 
-    const giveMeSword = await atomicInventoryInstance.spawnItem(
+    const giveMeSword = await supercoreInstance.spawnItem(
       "Sword",
       accounts[0],
       {from: accounts[0]}
     )
 
-    const giveThemShield = await atomicInventoryInstance.spawnItem(
+    const giveThemShield = await supercoreInstance.spawnItem(
       "Shield",
       accounts[2],
       {from: accounts[0]}
@@ -137,7 +137,7 @@ contract('AtomicInventory', (accounts) => {
     const swordOwnerBal = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const shieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
     
-    const startTrade = await atomicInventoryInstance.newTrade(
+    const startTrade = await supercoreInstance.newTrade(
       "SwordForShield",
       swordAddress,
       shieldAddress,
@@ -146,9 +146,9 @@ contract('AtomicInventory', (accounts) => {
       {from: accounts[0]}
     )
 
-    const trade = await atomicInventoryInstance.getTrade.call(accounts[0], "SwordForShield")
+    const trade = await supercoreInstance.getTrade.call(accounts[0], "SwordForShield")
     if (!trade) throw new Error('coulnt start a new trade')
-    const trades = await atomicInventoryInstance.getTrades.call(accounts[0], {from: accounts[0]});
+    const trades = await supercoreInstance.getTrades.call(accounts[0], {from: accounts[0]});
     if (!trades.length) throw new Error('couldnt get a list of trades');
   })
 })
