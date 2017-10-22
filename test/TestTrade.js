@@ -24,7 +24,8 @@ contract('Supercore', (accounts) => {
       3310000000000000,
       3310000000000000      
     )
-
+    const issueTokens = await supercoreInstance.issueTokens(accounts[0], 10000000000000000000)
+    
     const sword = await supercoreInstance.createItem(
       "Sword",
       "basic_sword",
@@ -112,7 +113,8 @@ contract('Supercore', (accounts) => {
       3310000000000000,
       3310000000000000      
     )
-
+    const issueTokens = await supercoreInstance.issueTokens(accounts[0], 10000000000000000000)
+    
     const sword = await supercoreInstance.createItem(
       "Sword",
       "basic_sword",

@@ -2,6 +2,8 @@ pragma solidity ^0.4.8;
 
 import "./Item.sol";
 import "./Meta.sol";
+import "./CoreToken.sol";
+
 // This contract represents trade methods available for Items
 
 contract Trade is Meta {
@@ -45,6 +47,10 @@ contract Trade is Meta {
     public 
   {
     require(
+      CoreToken(tokenAddress).balanceOf(msg.sender) >= tradeCost
+    );
+
+    require(
       Item(_offer).balanceOf(msg.sender) >= _offerAmount
     );
 
@@ -78,8 +84,14 @@ contract Trade is Meta {
     });
   }
 
+  // Change the cost of a trade
   function updateTradeCost (uint256 _cost) public onlyOwner {
     tradeCost = _cost;
+  }
+
+  // Get the cost to trade
+  function getTradeCost () constant public returns (uint _tradeCost) {
+    return tradeCost;
   }
 
   // Exchange items between merchant and customer

@@ -20,9 +20,9 @@ Items are ERC20 contracts, what this means is your favorite wallets can hold you
 
 <img src="http://icons.iconarchive.com/icons/aha-soft/large-home/512/Retail-shop-icon.png" data-canonical-src="http://icons.iconarchive.com/icons/aha-soft/large-home/512/Retail-shop-icon.png" width="60" align="right" />
 
-## Trading
+## Auction House
 
-Trading is built into the platform and an on chain "auction house" style method of trading can be created, and exchanges will happen fast and cheaply, no need to deal with traditional exchanges. Simply place the item you'd like to trade into the auction house, specify how many of that item you're looking to trade, and what item(s) you'd like for it! Then another player that owns the item you want can fulfill this trade.
+Trading is built into the platform and an on chain "auction house" style method of trading can be created, and exchanges will happen fast and cheaply, no need to deal with traditional exchanges. Simply place the item you'd like to trade into the auction house, specify how many of that item you're looking to trade, and what item(s) you'd like for it! Then another player that owns the item you want can fulfill this trade. Secure trading costs a very small amount of Core Token to decentivise listing trades and then trading the item elsewhere thus potentially wasting another users gas.
 
 
 
@@ -30,14 +30,22 @@ Trading is built into the platform and an on chain "auction house" style method 
 
 ## Loot Box
 
-The lootbox contract is funded by the Supercore owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by one of two methods (yet to be determined), Sending ETH to the Loot Box contract, or sending our Core Utility Token which can be earned by playing on our servers!
+The lootbox contract is funded by the Supercore owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by sending Core Tokens to the contract, which can be earned by playing on our servers, or bought with ETH.
 
 
 <img src="https://i.imgur.com/ZmPJjbK.png" data-canonical-src="https://i.imgur.com/ZmPJjbK.png" width="60" align="right" />
 
 ## Core Token
 
-Core can be earned by plaing on servers supported by our network, you will received a fixed amount of Core for every minute played on our servers. The Core Utility Token can be used for many things across our network from opening Loot Boxes to purchasing items from our Seller contract (TBD).
+Core can be earned by plaing on servers supported by our network, you will received a fixed amount of Core for every minute played on our servers. The Core Utility Token can be used for many things across our network from opening Loot Boxes, Listing items on the auction house, and more. They can also be purchased (if a supply is available) by sending ETH to Supercore. There will only be a fix amount of tokens available for sale this way, tokens used to open loot boxes, pay auction house fees, etc will be recycled into this balance.
+
+
+<img src="http://socaluncensored.com/wp/wp-content/uploads/2016/05/vault.jpg" data-canonical-src="http://socaluncensored.com/wp/wp-content/uploads/2016/05/vault.jpg" width="60" align="right" />
+
+
+## The Vault
+
+The vault houses all available tokens for sale, this is a fixed amount that once gone, will not be replenished until users use the Auction House or open Loot Boxes.
 
 
 ## Notice

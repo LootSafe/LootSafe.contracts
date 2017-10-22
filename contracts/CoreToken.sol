@@ -8,26 +8,29 @@ import "./ERC20/StandardToken.sol";
 contract CoreToken is StandardToken {
   uint256 public created;
   address public owner;
+  uint256 public vault;
 
   modifier onlyOwner {
     require(msg.sender == owner);
     _;
   }
 
-  function CoreToken (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals) public {
+  function CoreToken (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _vault) public {
     name = _name;
     decimals = _decimals;
     symbol = _symbol;
     totalSupply = _totalSupply;
-    balances[msg.sender] = _totalSupply;
+    balances[msg.sender] = _totalSupply - _vault;
     created = now;
     owner = msg.sender;
+    vault = _vault;
   }
 
   // Used in lootboxes and other parts of the platform to execute fuctions using our Core Utility Token
   function verifyAndDeduct (address _from, uint256 amount) public onlyOwner returns (bool verified) {
     require(balances[_from] >= amount);
     balances[_from] -= amount;
+    vault += amount;
     return true;
   }
 }

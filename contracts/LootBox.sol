@@ -8,7 +8,13 @@ import "./CoreToken.sol";
 
 contract LootBox is Meta {
   uint256 public lootBoxCost;
-  address tokenAddress;
+
+  // Loot box opened by person
+  event LootBoxOpened(address by, bytes8 rarity, address item);
+  // Cost updated by owner
+  event CostUpdated(uint cost);
+  // New loot available
+  event LootBoxItemAdded(address item);
 
   uint epicChance = 1;
   uint rareChance = 3;
@@ -28,6 +34,7 @@ contract LootBox is Meta {
 
   // Change lootbox price, only to be done by owner
   function updateLootBoxCost (uint256 _cost) public onlyOwner {
+    CostUpdated(_cost);
     lootBoxCost = _cost;
   }
 
@@ -41,11 +48,16 @@ contract LootBox is Meta {
       }
     }
 
+    // No duplicate items
     require(!exists);
+
     // Make sure we own enough of the item that we're adding
     require(Item(item).balanceOf(this) >= 1);
+
     // Okay we have enough
     items[rarity].push(item);
+
+    LootBoxItemAdded(item);
   }
 
   // For transparency reasons, make it easy to obtain chances
@@ -80,8 +92,13 @@ contract LootBox is Meta {
   }
 
   function openBox (address _to) internal returns (address item) {
+    // Pick the rarity of the box
     bytes8 rarity = chooseRarity();
+
+    // Pick an item from that rarity of boxes
     uint index = randomNumber(items[rarity].length - 1);
+
+    // Woot! Loot!
     address earnedItem = items[rarity][index];
 
     // Send them the item
@@ -92,17 +109,8 @@ contract LootBox is Meta {
       delete items[rarity][index];
     }
 
-    return earnedItem;
-  }
+    LootBoxOpened(_to, rarity, earnedItem);
 
-  function () public payable {
-    if (msg.value != 0) {
-      revert();
-    } else {
-      require(
-        CoreToken(tokenAddress).balanceOf(msg.sender) >= lootBoxCost
-      );      
-      openBox(msg.sender);
-    }
+    return earnedItem;
   }
 }

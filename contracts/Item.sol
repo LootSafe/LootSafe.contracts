@@ -12,6 +12,7 @@ contract Item is StandardToken {
   uint256 public created;
   address public owner;
   uint256 public finalSupply;
+  uint256 public vault; // Recycled tokens, available for purchase
 
   event Exchange(address trader, address receiver, uint256 amount);
 
@@ -28,7 +29,7 @@ contract Item is StandardToken {
     totalSupply = _totalSupply;           // Total amount of items ever available
     skin = _skin;                         // Optional skin on the item
     metadata = _metadata;                 // Extra data storage for item
-    balances[msg.sender] = _totalSupply;  // Give all the items to Inventory for now
+    balances[msg.sender] = _totalSupply - vault;  // Give all the items to Inventory for now
     created = now;                        // Timestamp
     owner = msg.sender;                   // This is more than likely Inventory
   }
@@ -51,12 +52,5 @@ contract Item is StandardToken {
     Exchange(_trader, _receiver, amount);
     balances[_trader] -= amount;
     balances[_receiver] += amount;
-  }
-
-  // Used in lootboxes and other parts of the platform to execute fuctions using our Core Utility Token
-  function verifyAndDeduct (address _from, uint256 amount) public onlyOwner returns (bool verified) {
-    require(balances[_from] >= amount);
-    balances[_from] -= amount;
-    return true;
   }
 }
