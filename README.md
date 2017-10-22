@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/ZmPJjbK.png" data-canonical-src="https://i.imgur.com/ZmPJjbK.png" width="150" align="left" />
+<img src="https://i.imgur.com/ZmPJjbK.png" data-canonical-src="https://i.imgur.com/ZmPJjbK.png" width="220" align="left" />
 
 # Supercore
 
