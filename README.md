@@ -1,8 +1,8 @@
 <img src="https://i.imgur.com/ZmPJjbK.png" data-canonical-src="https://i.imgur.com/ZmPJjbK.png" width="150" align="left" />
 
-# AtomicInventory
+# Supercore
 
-Atomic Inventory, in short, stores your in game inventory on the blockchain. Great, why? Well what this allows us to do is sync your inventory across multiple games. This task would be easy, swapping item for item, if all game developers supported this platform, but expecting that right away is unrealistic. Thus, we're building off-chain methods to swap these items for close equivleants in each game, for instance a Stone Pickaxe in Minecraft, will be a Stone Pickaxe in Rust, and a Stone Pickaxe in Ark, etc. But items like Diamond swords might become Steel Swords in Ark, or a mele weapon in Rust. 
+Supercore, in short, stores your in game inventory on the blockchain. Great, why? Well what this allows us to do is sync your inventory across multiple games. This task would be easy, swapping item for item, if all game developers supported this platform, but expecting that right away is unrealistic. Thus, we're building off-chain methods to swap these items for close equivleants in each game, for instance a Stone Pickaxe in Minecraft, will be a Stone Pickaxe in Rust, and a Stone Pickaxe in Ark, etc. But items like Diamond swords might become Steel Swords in Ark, or a mele weapon in Rust. 
 
 The benefit to using this platform is to reward players for interaction with the network of servers we run, building a strong inventory (redeemable once per server, per wipe) will incentivize sticking around on our network vs leaving for another server. Although the benefit is not just within the network, the player also gets to hold on to their hours of grinding for items in game, in the form of cryptocurrencies, more on that below.
 
@@ -30,7 +30,7 @@ Trading is built into the platform and an on chain "auction house" style method 
 
 ## Loot Box
 
-The lootbox contract is funded by the AtomicInventory owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by one of two methods (yet to be determined), Sending ETH to the Loot Box contract, or sending our Atomi Utility Token which can be earned by playing on our servers!
+The lootbox contract is funded by the Supercore owner for possible rewards of diferent rarity to be given out on chain. Opening a loot box essentially just  triggers the lootbox contract to transfer it's balance of items that were chosen in that box, to you on the ERC20 Item contract. LootBoxes can be opened by one of two methods (yet to be determined), Sending ETH to the Loot Box contract, or sending our Atomi Utility Token which can be earned by playing on our servers!
 
 
 <img src="https://i.imgur.com/FGdJ7Av.png" data-canonical-src="https://i.imgur.com/FGdJ7Av.png" width="60" align="right" />
