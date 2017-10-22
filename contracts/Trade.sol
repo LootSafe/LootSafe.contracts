@@ -1,10 +1,12 @@
 pragma solidity ^0.4.8;
 
 import "./Item.sol";
-
+import "./Meta.sol";
 // This contract represents trade methods available for Items
 
-contract Trade {
+contract Trade is Meta {
+  uint256 public tradeCost;
+
   // This struct represents a trade transaction
   struct Handshake {
     address merchant;           // This is the creator of the trade
@@ -76,6 +78,9 @@ contract Trade {
     });
   }
 
+  function updateTradeCost (uint256 _cost) public onlyOwner {
+    tradeCost = _cost;
+  }
 
   // Exchange items between merchant and customer
   function exchange (address item, address merchant, address customer, uint amount) internal {

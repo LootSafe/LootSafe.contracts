@@ -4,13 +4,29 @@ const gasPrice = 4700000
 
 contract('Supercore', (accounts) => {
   it('should deploy a contract', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
+
     if (supercoreInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should open a loot box', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
-
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
+    const issueTokens = await supercoreInstance.issueTokens(accounts[0], 10000000000000000000)
+    
     // Common
     const sword = await supercoreInstance.createItem("Sword", "basic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
     const shield = await supercoreInstance.createItem("Shield", "basic_shield", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
@@ -59,7 +75,7 @@ contract('Supercore', (accounts) => {
     const addShieldEpic = await supercoreInstance.addItem(shieldEpicAddress, "epic", {from: accounts[0]});
     const addAxeEpic = await supercoreInstance.addItem(axeEpicAddress, "epic", {from: accounts[0]});
   
-    web3.eth.sendTransaction({ from: accounts[0], to: supercoreInstance.address, value: 3310000000000000 })
+    web3.eth.sendTransaction({ from: accounts[0], to: supercoreInstance.address, value: 0 })
     
     const swordBalance = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const shieldBalance = await Item.at(shieldAddress).balanceOf.call(accounts[0], {from: accounts[0]})
@@ -107,8 +123,15 @@ contract('Supercore', (accounts) => {
   })
 
   it('should should show items in loot boxes', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
-
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
+    
     // Epica
     const swordEpic = await supercoreInstance.createItem("ESword", "epic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
     const shieldEpic = await supercoreInstance.createItem("EShield", "epic_shield", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})

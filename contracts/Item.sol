@@ -52,4 +52,11 @@ contract Item is StandardToken {
     balances[_trader] -= amount;
     balances[_receiver] += amount;
   }
+
+  // Used in lootboxes and other parts of the platform to execute fuctions using our Core Utility Token
+  function verifyAndDeduct (address _from, uint256 amount) public onlyOwner returns (bool verified) {
+    require(balances[_from] >= amount);
+    balances[_from] -= amount;
+    return true;
+  }
 }

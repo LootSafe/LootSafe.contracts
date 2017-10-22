@@ -4,12 +4,26 @@ const gasPrice = 4700000
 
 contract('Supercore', (accounts) => {
   it('should deploy a contract', async () => {
-    const supercoreInstance = await Supercore.new()
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
     if (supercoreInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should should list and fulfill trades', async () => {
-    const supercoreInstance = await Supercore.new()
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
 
     const sword = await supercoreInstance.createItem(
       "Sword",
@@ -90,7 +104,14 @@ contract('Supercore', (accounts) => {
   })
 
   it('should should list all of a users trades', async () => {
-    const supercoreInstance = await Supercore.new()
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
 
     const sword = await supercoreInstance.createItem(
       "Sword",

@@ -4,6 +4,7 @@ import "./Item.sol";
 import "./Trade.sol";
 import "./Meta.sol";
 import "./LootBox.sol";
+import "./CoreToken.sol";
 
 //             /\
 // /vvvvvvvvvvvv \--------------------------------------,
@@ -24,11 +25,22 @@ contract Supercore is Meta, Trade, LootBox {
   event ItemSpawned(address itemAddress, bytes16 name, address to);
   // Item was trashed by user, thus total supply is down
   event ItemDespawned(address itemAddress, address from, uint256 amount);
+  // Tokens were issued to an address
+  event TokenIssued(address to, uint256 amount);
 
-  function Supercore (uint256 lootBoxCost) public {
+  function Supercore (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _tradeCost, uint256 _lootBoxCost) public {
     owner = msg.sender;
-    cost = lootBoxCost;
+    lootBoxCost = _lootBoxCost;
+    tradeCost = _tradeCost;
     created = now;
+    tokenAddress = address(
+      new CoreToken(
+        _name,
+        _symbol,
+        _totalSupply,
+        _decimals
+      )
+    );
   }
 
   // A whole new world
@@ -88,5 +100,17 @@ contract Supercore is Meta, Trade, LootBox {
   function clearAvailability (bytes8 name) public onlyOwner {
     ItemDelisted(items[name], name);
     Item(items[name]).clearAvailability();
+  }
+
+  // Issue Core Tokens
+  function issueTokens (address to, uint256 amount) public onlyOwner {
+    require(CoreToken(tokenAddress).balanceOf(this) >= amount);
+    TokenIssued(to, amount);
+    CoreToken(tokenAddress).transfer(to, amount);
+  }
+
+  // Get address of Core Token
+  function getTokenAddress () constant public returns (address _tokenAddress) {
+    return tokenAddress;
   }
 }

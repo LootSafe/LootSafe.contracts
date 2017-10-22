@@ -4,12 +4,26 @@ const gasPrice = 4700000
 
 contract('Supercore', (accounts) => {
   it('should deploy a contract', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
     if (supercoreInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should deploy items', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
     
     supercoreInstance.createItem(
       "Sword",
@@ -24,7 +38,14 @@ contract('Supercore', (accounts) => {
   })
 
   it('should send items', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
 
     const createItem = await supercoreInstance.createItem(
       "Sword",
@@ -53,7 +74,14 @@ contract('Supercore', (accounts) => {
   })
 
   it('should despawn items', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
 
     const createItem = await supercoreInstance.createItem(
       "Sword",
@@ -91,7 +119,14 @@ contract('Supercore', (accounts) => {
   })
 
   it('should clear availability of items', async () => {
-    const supercoreInstance = await Supercore.new(3310000000000000)
+    const supercoreInstance = await Supercore.new(
+      "Core",
+      "CORE",
+      80000000000000000000000000,
+      18,
+      3310000000000000,
+      3310000000000000      
+    )
 
     const createItem = await supercoreInstance.createItem(
       "Sword",

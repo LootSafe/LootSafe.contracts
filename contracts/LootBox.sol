@@ -4,9 +4,15 @@ pragma solidity ^0.4.8;
 // It should aslo house shared modifiers
 import "./Item.sol";
 import "./Meta.sol";
+import "./CoreToken.sol";
 
 contract LootBox is Meta {
-  uint256 public cost;
+  uint256 public lootBoxCost;
+  address tokenAddress;
+
+  uint epicChance = 1;
+  uint rareChance = 3;
+  uint uncommonChance = 20;
 
   // Rarities common, uncommon, rare, legendary
   mapping(bytes8 => address[]) items;
@@ -20,10 +26,12 @@ contract LootBox is Meta {
     return (uint(block.blockhash(block.number - 1)) % ceiling + 1);
   }
 
-  function updateCost (uint256 _cost) public onlyOwner {
-    cost = _cost;
+  // Change lootbox price, only to be done by owner
+  function updateLootBoxCost (uint256 _cost) public onlyOwner {
+    lootBoxCost = _cost;
   }
 
+  // Add an item to the  loot table
   function addItem (address item, bytes8 rarity) public onlyOwner {
     // TODO: Make sure item is not already added
 
@@ -33,14 +41,31 @@ contract LootBox is Meta {
     items[rarity].push(item);
   }
 
+  // For transparency reasons, make it easy to obtain chances
+  function getChances () constant public returns (uint _epicChance, uint _rareChance, uint _uncommonChance) {
+    return (
+      epicChance,
+      rareChance,
+      uncommonChance
+    );
+  }
+
+  // Update the chances of getting a loot box in each rarity
+  function updateChance (uint _epicChance, uint _rareChance, uint _uncommonChance) public onlyOwner {
+    epicChance = _epicChance;
+    rareChance = _rareChance;
+    uncommonChance = _uncommonChance;
+  }
+
+  // Choose rarity of  loot box
   function chooseRarity () constant internal returns (bytes8 rarity) {
     uint num = randomNumber(100);
 
-    if (num <= 1) {
+    if (num <= epicChance) {
       return bytes8("epic");
-    } else if (num > 1 && num <= 3) {
+    } else if (num > epicChance && num <= rareChance) {
       return bytes8("rare");
-    } else if (num > 3 && num <= 20) {
+    } else if (num > rareChance && num <= uncommonChance) {
       return bytes8("uncommon");
     } else { 
       return bytes8("common"); 
@@ -64,10 +89,13 @@ contract LootBox is Meta {
   }
 
   function () public payable {
-    if (msg.value == cost) {
-      openBox(msg.sender);
-    } else {
+    if (msg.value != 0) {
       revert();
+    } else {
+      require(
+        CoreToken(tokenAddress).balanceOf(msg.sender) >= lootBoxCost
+      );      
+      openBox(msg.sender);
     }
   }
 }
