@@ -53,6 +53,20 @@ The vault houses all available tokens for sale, this is a fixed amount that once
 The project is still under heavy development and more updates will come, for now the platform is being fleshed out on https://8bit.network
 
 
+## Test Settings
+
+```js
+Supercore.new(
+  "Core",
+  "CORE",
+  100000000000000000000000000,
+  18,
+  25000000000000000000,
+  500000000000000000,
+  75000000000000000000000000    
+)
+```
+
 ### Test Coverage
 ```
    Contract: Supercore
@@ -80,3 +94,4 @@ The project is still under heavy development and more updates will come, for now
 
   14 passing (4s)
 ```
+

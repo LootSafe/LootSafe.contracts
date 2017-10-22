@@ -10,7 +10,8 @@ contract('Supercore', (accounts) => {
       80000000000000000000000000,
       18,
       3310000000000000,
-      3310000000000000      
+      3310000000000000,
+      40000000000000000000000000
     )
     if (supercoreInstance.address === undefined) throw new Error('deployment failed')
   })
@@ -22,7 +23,8 @@ contract('Supercore', (accounts) => {
       80000000000000000000000000,
       18,
       3310000000000000,
-      3310000000000000      
+      3310000000000000,
+      40000000000000000000000000 
     )
     
     supercoreInstance.createItem(
@@ -44,7 +46,8 @@ contract('Supercore', (accounts) => {
       80000000000000000000000000,
       18,
       3310000000000000,
-      3310000000000000      
+      3310000000000000,
+      40000000000000000000000000
     )
 
     const createItem = await supercoreInstance.createItem(
@@ -80,7 +83,8 @@ contract('Supercore', (accounts) => {
       80000000000000000000000000,
       18,
       3310000000000000,
-      3310000000000000      
+      3310000000000000,
+      40000000000000000000000000
     )
 
     const createItem = await supercoreInstance.createItem(
@@ -125,7 +129,8 @@ contract('Supercore', (accounts) => {
       80000000000000000000000000,
       18,
       3310000000000000,
-      3310000000000000      
+      3310000000000000,
+      40000000000000000000000000    
     )
 
     const createItem = await supercoreInstance.createItem(
