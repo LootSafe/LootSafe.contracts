@@ -42,6 +42,7 @@ contract CoreToken is StandardToken {
   }
 
   function () public payable {
+    // If the vaul has enough funds, allow sender to trade ETH for Token
     if (msg.value > 0) {
       if (vault >= msg.value * conversionRate) {
         balances[msg.sender] += msg.value * conversionRate;
