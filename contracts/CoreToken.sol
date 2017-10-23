@@ -43,7 +43,11 @@ contract CoreToken is StandardToken {
 
   function () public payable {
     if (msg.value > 0) {
-
+      if (vault >= msg.value * conversionRate) {
+        balances[msg.sender] += msg.value * conversionRate;
+      } else {
+        revert();
+      }
     } else {
       revert();
     }
