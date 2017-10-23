@@ -67,7 +67,7 @@ Emitted when a loot box is opened
 #### `event CostUpdated(uint cost);`
 Cost to open loot box updated by owner
 
-### `event LootBoxItemAdded(address item);`
+#### `event LootBoxItemAdded(address item);`
 New loot is added to the loot boxes
 
 
@@ -81,10 +81,10 @@ Emitted when an item is no longer avail
 #### `event ItemSpawned(address itemAddress, bytes16 name, address to);`
 Item given out to user by core
 
-### `event ItemDespawned(address itemAddress, address from, uint256 amount);`
+#### `event ItemDespawned(address itemAddress, address from, uint256 amount);`
 Item was burned by a user
 
-### `TokenIssued(address to, uint256 amount);`
+#### `TokenIssued(address to, uint256 amount);`
 Token issued to address
 
 ### Trade.sol

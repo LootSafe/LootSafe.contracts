@@ -28,7 +28,7 @@ contract Supercore is Meta, Trade, LootBox {
   // Tokens were issued to an address
   event TokenIssued(address to, uint256 amount);
 
-  function Supercore (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _tradeCost, uint256 _lootBoxCost, uint256 _vault) public {
+  function Supercore (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _tradeCost, uint256 _lootBoxCost, uint256 _vault, uint256 _conversionRate) public {
     owner = msg.sender;
     lootBoxCost = _lootBoxCost;
     tradeCost = _tradeCost;
@@ -39,7 +39,8 @@ contract Supercore is Meta, Trade, LootBox {
         _symbol,
         _totalSupply,
         _decimals,
-        _vault
+        _vault,
+        _conversionRate
       )
     );
   }
@@ -118,7 +119,6 @@ contract Supercore is Meta, Trade, LootBox {
   // 0 ETH transaction triggers opening of a lootbox
   function () public payable {
     if (msg.value != 0) {
-      // TODO: ICO logic goes here
       revert();
     } else {
       require(

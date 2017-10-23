@@ -9,13 +9,14 @@ contract CoreToken is StandardToken {
   uint256 public created;
   address public owner;
   uint256 public vault;
+  uint256 public conversionRate;
 
   modifier onlyOwner {
     require(msg.sender == owner);
     _;
   }
 
-  function CoreToken (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _vault) public {
+  function CoreToken (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _vault, uint256 _conversionRate) public {
     name = _name;                                 // Human friendly name of contract
     decimals = _decimals;                         // Decimals (18)
     symbol = _symbol;                             // Symbol for the contract (CORE)
@@ -24,6 +25,7 @@ contract CoreToken is StandardToken {
     created = now;                                // Right meow
     owner = msg.sender;                           // Das me
     vault = _vault;                               // The vault recycles tokens used in the system for resale
+    conversionRate = _conversionRate;            // How many tokens per wei
   }
 
   // This balance is the amount of token available for resell
@@ -37,5 +39,13 @@ contract CoreToken is StandardToken {
     balances[_from] -= amount;
     vault += amount;
     return true;
+  }
+
+  function () public payable {
+    if (msg.value > 0) {
+
+    } else {
+      revert();
+    }
   }
 }

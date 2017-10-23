@@ -22,6 +22,7 @@ contract Trade is Meta {
     bool fulfilled;             // Have both parties agreed, aka if so the order has been fulfilled
   }
 
+  // Emitted when 
   event TradeEvent(
     address merchant,
     bytes8 tradeId,

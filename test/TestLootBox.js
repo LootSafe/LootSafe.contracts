@@ -11,7 +11,8 @@ contract('Supercore', (accounts) => {
       18,
       3310000000000000,
       3310000000000000,
-      40000000000000000000000000   
+      40000000000000000000000000,
+      100  
     )
 
     if (supercoreInstance.address === undefined) throw new Error('deployment failed')
@@ -25,7 +26,8 @@ contract('Supercore', (accounts) => {
       18,
       3310000000000000,
       3310000000000000,
-      40000000000000000000000000   
+      40000000000000000000000000,
+      100  
     )
     const issueTokens = await supercoreInstance.issueTokens(accounts[0], 10000000000000000000)
     
@@ -132,7 +134,8 @@ contract('Supercore', (accounts) => {
       18,
       3310000000000000,
       3310000000000000,
-      40000000000000000000000000   
+      40000000000000000000000000,
+      100   
     )
     
     // Epica
@@ -163,7 +166,8 @@ contract('Supercore', (accounts) => {
       18,
       3310000000000000,
       3310000000000000,
-      40000000000000000000000000    
+      40000000000000000000000000,
+      100    
     )
 
     const lootBoxChances = await supercoreInstance.getChances.call()
