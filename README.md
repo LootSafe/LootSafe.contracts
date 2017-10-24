@@ -118,32 +118,35 @@ Supercore.new(
 
 ### Test Coverage
 ```
-   Contract: Supercore
-    ✓ should deploy a contract (48ms)
-    ✓ should deploy items (57ms)
-    ✓ should send items (194ms)
-    ✓ should despawn items (210ms)
-    ✓ should clear availability of items (185ms)
+  Contract: Supercore
+    ✓ should deploy a contract (79ms)
+    ✓ should deploy items (80ms)
+    ✓ should send items (259ms)
+    ✓ should despawn items (304ms)
+    ✓ should clear availability of items (246ms)
 
   Contract: Item
-    ✓ should deploy a contract (43ms)
+    ✓ should deploy a contract (52ms)
     ✓ should give owner balance (46ms)
-    ✓ should exchange balances (115ms)
+    ✓ should exchange balances (126ms)
 
   Contract: Supercore
-    ✓ should deploy a contract (47ms)
-    ✓ should open a loot box (1708ms)
-    ✓ should should show items in loot boxes (413ms)
+    ✓ should deploy a contract (95ms)
+    ✓ should open a loot box (1869ms)
+    ✓ should should show items in loot boxes (463ms)
+    ✓ should get loot box odds (107ms)
 
   Contract: Supercore
-    ✓ should deploy a contract (42ms)
-    ✓ should should list and fulfill trades (605ms)
-    ✓ should should list all of a users trades (471ms)
+    ✓ should deploy a contract (77ms)
+    ✓ should deploy a allow token purchases from vault (280ms)
 
-
-  14 passing (4s)
+  Contract: Supercore
+    ✓ should deploy a contract (72ms)
+    ✓ should should list and fulfill trades (663ms)
+    ✓ should should list all of a users trades (526ms)
 ```
 
-
-
-
+### Pending Tests
+- Test buying tokens when vault is empty
+- Test starting a trade and then trying to fulfill it after spending the item or burning
+- Ensure all ownly owner functions are not accessable outside of preffered ownership scope

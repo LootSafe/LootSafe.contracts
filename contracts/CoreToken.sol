@@ -25,7 +25,7 @@ contract CoreToken is StandardToken {
     created = now;                                // Right meow
     owner = msg.sender;                           // Das me
     vault = _vault;                               // The vault recycles tokens used in the system for resale
-    conversionRate = _conversionRate;            // How many tokens per wei
+    conversionRate = _conversionRate;             // How many tokens per wei
   }
 
   // This balance is the amount of token available for resell
