@@ -1,7 +1,6 @@
 pragma solidity ^0.4.8;
 
-// This should house standard information about the contract stack
-// It should aslo house shared modifiers
+// Common functions and metadata
 
 contract Meta {
   address public owner;

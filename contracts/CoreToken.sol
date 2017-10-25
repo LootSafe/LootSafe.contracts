@@ -2,8 +2,7 @@ pragma solidity ^0.4.8;
 
 import "./ERC20/StandardToken.sol";
 
-// This contract represents an item on the network
-// The item can be traded in the same way as a standard ERC20 contract
+// This is the core utility token for use throughout the network
 
 contract CoreToken is StandardToken {
   uint256 public created;

@@ -4,16 +4,14 @@ import "./Item.sol";
 import "./Trade.sol";
 import "./Meta.sol";
 import "./LootBox.sol";
+import "./Environment.sol";
 import "./CoreToken.sol";
 
-//             /\
-// /vvvvvvvvvvvv \--------------------------------------,
-// `^^^^^^^^^^^^ /====================================="
-//             \/
-// This contract represents an item on the network
-// The item can be traded in the same way as a standard ERC20 contract
 
-contract Supercore is Meta, Trade, LootBox {
+// This contract is the central contract of the system and owns
+// items, trades, etc.
+
+contract Supercore is Meta, Trade, LootBox, Environment {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
 

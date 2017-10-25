@@ -1,7 +1,8 @@
 pragma solidity ^0.4.8;
 
-// This should house standard information about the contract stack
-// It should aslo house shared modifiers
+// This contract represents lootboxes, which can be used to gift a random item of a random rarity to
+// a user provided they send the utility token
+
 import "./Item.sol";
 import "./Meta.sol";
 import "./CoreToken.sol";

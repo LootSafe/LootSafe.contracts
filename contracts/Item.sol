@@ -4,6 +4,10 @@ import "./ERC20/StandardToken.sol";
 
 // This contract represents an item on the network
 // The item can be traded in the same way as a standard ERC20 contract
+//,_,_,_,_,_,_,_,_,_,_|___________________________________________________
+//| | | | | | | | | | |__________________________________________________/
+//'-'-'-'-'-'-'-'-'-'-|-------------------------------------------------
+
 
 contract Item is StandardToken {
   bytes32 public id;
