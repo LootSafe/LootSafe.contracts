@@ -2,7 +2,7 @@
 
 # Supercore
 
-## What is Super Core?
+### What is Super Core?
 
 Super Core makes it easy to create, and extend games on the Blockchain. From trading card games to cross platform inventories, achievements and more! Our system utilizes simple but powerful smart contracts to build a trustless management system for assets. We then wrap this smart contract system in an easy to use, intuitive, game development environment. This makes building your next game, in decentralized way, a cakewalk. 🍰
 
