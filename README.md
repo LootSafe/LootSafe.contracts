@@ -1,13 +1,19 @@
 <img src="https://i.imgur.com/aEHA4mY.png" data-canonical-src="https://i.imgur.com/aEHA4mY.png" width="220" align="left" />
-
 # Supercore
+## What is Super Core?
+Super Core makes it easy to create, and extend games on the Blockchain. From trading card games to cross platform inventories, achievements and more! Our system utilizes simple but powerful smart contracts to build a trustless management system for assets. We then wrap this smart contract system in an easy to use, intuitive, game development environment. This makes building your next game, in decentralized way, a cakewalk. 🍰
 
-Supercore, in short, stores your in game inventory on the blockchain. Great, why? Well what this allows us to do is sync your inventory across multiple games. This task would be easy, swapping item for item, if all game developers supported this platform, but expecting that right away is unrealistic. Thus, we're building off-chain methods to swap these items for close equivleants in each game, for instance a Stone Pickaxe in Minecraft, will be a Stone Pickaxe in Rust, and a Stone Pickaxe in Ark, etc. But items like Diamond swords might become Steel Swords in Ark, or a mele weapon in Rust. 
+- [x] Secure Smart Contracts
+- [x] Responsible token distribution system
+- [x] Built in asset exchange
+- [x] Loot Box / Random Item solution
+- [x] ERC 20 compliant assets
+- [x] Easy to use creation platform
 
-The benefit to using this platform is to reward players for interaction with the network of servers we run, building a strong inventory (redeemable once per server, per wipe) will incentivize sticking around on our network vs leaving for another server. Although the benefit is not just within the network, the player also gets to hold on to their hours of grinding for items in game, in the form of cryptocurrencies, more on that below.
 
+### Why Decentralized?
 
-
+Decentralizing your game means that players can obtain items in your game and hold them as a psuedo physical store of value, lock them up and keep them safe until they are ready for use. This also means that future versions of your game can maintain the same items and prove ownership of those items. Furthermore others can build games based on your items! Should you ever stop maintaining your game players do not lose access to all of their hard work. The list of benefits goes on and on and most arguments for why you should decentralize currencies hold value here as well.
 
 <img src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" data-canonical-src="https://wiki.teamfortress.com/w/images/thumb/0/00/Group_of_Bundles.png/300px-Group_of_Bundles.png?t=20110605085123" width="60" align="right" />
 
