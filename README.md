@@ -51,6 +51,9 @@ Core can be earned by plaing on servers supported by our network, you will recei
 
 <img src="http://socaluncensored.com/wp/wp-content/uploads/2016/05/vault.jpg" data-canonical-src="http://socaluncensored.com/wp/wp-content/uploads/2016/05/vault.jpg" width="60" align="right" />
 
+## Match Verify
+
+Match Verify takes a list of assets and a moveset from two or more parties, the parties then agree on a winner. Agreeing with concensus is incentivised by building reputation for truthful matches, if you submit false matches you will be deducted reputation and could be barred from competing. THis creates a trust network of gamers and "ranked" matches can only be played by those with good reputation. Matches events are emitted and vendors should watch these events to reward match wins.
 
 ## The Vault
 

@@ -2,11 +2,10 @@ pragma solidity ^0.4.8;
 
 import "./Item.sol";
 import "./Trade.sol";
-import "./Meta.sol";
 import "./LootBox.sol";
 import "./Environment.sol";
 import "./CoreToken.sol";
-
+import "./helpers/Meta.sol";
 
 // This contract is the central contract of the system and owns
 // items, trades, etc.

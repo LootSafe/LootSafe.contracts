@@ -1,8 +1,8 @@
 pragma solidity ^0.4.8;
 
 import "./Item.sol";
-import "./Meta.sol";
 import "./CoreToken.sol";
+import "./helpers/Meta.sol";
 
 // This contract represents trade methods available for Items
 // You can consider this your Auction House or General Store

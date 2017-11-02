@@ -6,6 +6,7 @@ contract Meta {
   address public owner;
   uint256 public created;
   address public tokenAddress;
+  address public reputationAddress;
 
   function Meta () public {
     owner = msg.sender;

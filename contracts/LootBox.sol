@@ -4,8 +4,9 @@ pragma solidity ^0.4.8;
 // a user provided they send the utility token
 
 import "./Item.sol";
-import "./Meta.sol";
 import "./CoreToken.sol";
+import "./helpers/Meta.sol";
+import "./helpers/SafeMath.sol";
 
 contract LootBox is Meta {
   uint256 public lootBoxCost;
@@ -96,7 +97,7 @@ contract LootBox is Meta {
     bytes8 rarity = chooseRarity();
 
     // Pick an item from that rarity of boxes
-    uint index = randomNumber(items[rarity].length - 1);
+    uint index = randomNumber(SafeMath.sub(items[rarity].length, 1));
 
     // Woot! Loot!
     address earnedItem = items[rarity][index];
