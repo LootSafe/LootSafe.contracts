@@ -1,11 +1,11 @@
-const Supercore = artifacts.require('Supercore.sol')
+const BlockBench = artifacts.require('BlockBench.sol')
 const Item = artifacts.require('Item.sol')
 const CoreToken = artifacts.require('CoreToken.sol')
 const gasPrice = 4700000
 
-contract('Supercore', (accounts) => {
+contract('BlockBench', (accounts) => {
   it('should deploy a contract', async () => {
-    const supercoreInstance = await Supercore.new(
+    const blockBenchInstance = await BlockBench.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -15,11 +15,11 @@ contract('Supercore', (accounts) => {
       40000000000000000000000000,
       100
     )
-    if (supercoreInstance.address === undefined) throw new Error('deployment failed')
+    if (blockBenchInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should deploy a allow token purchases from vault', async () => {
-    const supercoreInstance = await Supercore.new(
+    const blockBenchInstance = await BlockBench.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -30,7 +30,7 @@ contract('Supercore', (accounts) => {
       100
     )
 
-    const tokenAddress = await supercoreInstance.getTokenAddress.call({from: accounts[0]})
+    const tokenAddress = await blockBenchInstance.getTokenAddress.call({from: accounts[0]})
     const sendEth = await web3.eth.sendTransaction({ from: accounts[0], to: tokenAddress, value: 1 })
     const mahBalance = await CoreToken.at(tokenAddress).balanceOf.call(accounts[0], {from: accounts[0]})
 

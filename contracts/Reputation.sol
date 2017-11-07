@@ -18,7 +18,7 @@ contract Reputatoin is Meta {
     reputation[to] = SafeMath.add(reputation[to], amount);
   }
 
-  function deductReputation (uint256 amount, address from) internal onlyOwner {
+  function subReputation (uint256 amount, address from) internal onlyOwner {
     reputation[from] = SafeMath.sub(reputation[from], amount);
   }
 }

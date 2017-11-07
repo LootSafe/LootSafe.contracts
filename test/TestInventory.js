@@ -1,10 +1,10 @@
-const Supercore = artifacts.require('Supercore.sol')
+const BlockBench = artifacts.require('BlockBench.sol')
 const Item = artifacts.require('Item.sol')
 const gasPrice = 4700000
 
-contract('Supercore', (accounts) => {
+contract('BlockBench', (accounts) => {
   it('should deploy a contract', async () => {
-    const supercoreInstance = await Supercore.new(
+    const blockBenchInstance = await BlockBench.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -14,11 +14,11 @@ contract('Supercore', (accounts) => {
       40000000000000000000000000,
       100
     )
-    if (supercoreInstance.address === undefined) throw new Error('deployment failed')
+    if (blockBenchInstance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should deploy items', async () => {
-    const supercoreInstance = await Supercore.new(
+    const blockBenchInstance = await BlockBench.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -29,7 +29,7 @@ contract('Supercore', (accounts) => {
       100
     )
     
-    supercoreInstance.createItem(
+    blockBenchInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -42,7 +42,7 @@ contract('Supercore', (accounts) => {
   })
 
   it('should send items', async () => {
-    const supercoreInstance = await Supercore.new(
+    const blockBenchInstance = await BlockBench.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -53,7 +53,7 @@ contract('Supercore', (accounts) => {
       100
     )
 
-    const createItem = await supercoreInstance.createItem(
+    const createItem = await blockBenchInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -62,13 +62,13 @@ contract('Supercore', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await supercoreInstance.spawnItem(
+    const spawnItem = await blockBenchInstance.spawnItem(
       "Sword",
       accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await supercoreInstance.getItem.call(
+    const itemAddress = await blockBenchInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
@@ -80,7 +80,7 @@ contract('Supercore', (accounts) => {
   })
 
   it('should despawn items', async () => {
-    const supercoreInstance = await Supercore.new(
+    const blockBenchInstance = await BlockBench.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -91,7 +91,7 @@ contract('Supercore', (accounts) => {
       100
     )
 
-    const createItem = await supercoreInstance.createItem(
+    const createItem = await blockBenchInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -100,20 +100,20 @@ contract('Supercore', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await supercoreInstance.spawnItem(
+    const spawnItem = await blockBenchInstance.spawnItem(
       "Sword",
       accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await supercoreInstance.getItem.call(
+    const itemAddress = await blockBenchInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
     const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
 
-    const despawnTx = await supercoreInstance.despawnItem(
+    const despawnTx = await blockBenchInstance.despawnItem(
       "Sword",
       1,
       {gas: gasPrice, from: accounts[1]}
@@ -127,7 +127,7 @@ contract('Supercore', (accounts) => {
   })
 
   it('should clear availability of items', async () => {
-    const supercoreInstance = await Supercore.new(
+    const blockBenchInstance = await BlockBench.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -138,7 +138,7 @@ contract('Supercore', (accounts) => {
       100  
     )
 
-    const createItem = await supercoreInstance.createItem(
+    const createItem = await blockBenchInstance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -147,18 +147,18 @@ contract('Supercore', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await supercoreInstance.getItem.call(
+    const itemAddress = await blockBenchInstance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const inventoryBalance = await Item.at(itemAddress).balanceOf.call(supercoreInstance.address)
-    const despawnTx = await supercoreInstance.clearAvailability(
+    const inventoryBalance = await Item.at(itemAddress).balanceOf.call(blockBenchInstance.address)
+    const despawnTx = await blockBenchInstance.clearAvailability(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const inventoryBalanceAfterClear = await Item.at(itemAddress).balanceOf.call(supercoreInstance.address)
+    const inventoryBalanceAfterClear = await Item.at(itemAddress).balanceOf.call(blockBenchInstance.address)
     
     if (!itemAddress) throw new Error('item address not returned')
     if (!inventoryBalance.gt(0)) throw new Error('item not registered correctly')
