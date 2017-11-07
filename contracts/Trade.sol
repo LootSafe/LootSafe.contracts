@@ -123,7 +123,7 @@ contract Trade is Meta {
   }
 
   // Exchange items between merchant and customer
-  function exchange (address item, address merchant, address customer, uint amount) internal {
+  function exchange (address item, address merchant, address customer, uint amount) private {
     Item(item).exchange(
       merchant,
       customer, 

@@ -11,7 +11,7 @@ import "./helpers/Meta.sol";
 // This contract is the central contract of the system and owns
 // items, trades, etc.
 
-contract BlockBench is Meta, Trade, LootBox, Environment, Crafter {
+contract BlockBench is Meta, Trade, LootBox, Environment {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
 

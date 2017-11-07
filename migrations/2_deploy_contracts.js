@@ -1,10 +1,10 @@
 const Item = artifacts.require("./Item.sol")
-const Meta = artifacts.require("./Meta.sol")
 const Trade = artifacts.require("./Trade.sol")
 const LootBox = artifacts.require("./LootBox.sol")
 const StandardToken = artifacts.require("./ERC20/StandardToken.sol")
 const BlockBench = artifacts.require("./BlockBench.sol")
 const CoreToken = artifacts.require("./CoreToken.sol")
+const Meta = artifacts.require("./helpers/Meta.sol")
 
 const gasPrice = 4700000
 
