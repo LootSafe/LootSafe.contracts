@@ -5,8 +5,8 @@ import "./helpers/SafeMath.sol";
 
 contract Crafter is Meta {
 
-  function Crafter (address _owner) public {
-    owner = _owner;
+  function Crafter () public {
+    owner = msg.sender;
   }
 
   struct Recipie {
