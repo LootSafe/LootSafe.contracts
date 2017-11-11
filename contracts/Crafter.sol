@@ -2,6 +2,7 @@ pragma solidity ^0.4.8;
 
 import "./helpers/Meta.sol";
 import "./helpers/SafeMath.sol";
+import "./Item.sol";
 
 contract Crafter is Meta {
 
@@ -11,35 +12,49 @@ contract Crafter is Meta {
 
   struct Recipie {
     address result;
-    mapping(address => uint256) requirements;
+    address[] materials;
+    uint256[] materialCount;
   }
 
   struct DeconstructionRecipie {
     address item;
-    mapping(address => uint256) rewards;
+    address[] rewards;
+    uint256[] rewardCount;
   }
 
   mapping(address => Recipie) recipies;
   mapping(address => DeconstructionRecipie) deconstructionRecipies;
 
-  function newRecipie (address result, address[] requiredItems, uint256[] requiredQuantity) public onlyOwner {
+  function newRecipie (address result, address[] _materials, uint256[] _materialCount) public onlyOwner {
     recipies[result] = Recipie({
-      result: result
+      result: result,
+      materials: _materials,
+      materialCount: _materialCount
     });
-
-    for (uint i = 0; i < requiredItems.length; i++) {
-      recipies[result].requirements[requiredItems[i]] = requiredQuantity[i];
-    }
   }
 
-  function newDeconstructionRecipie (address item, address[] rewardItems, uint256[] rewardQuantity) public onlyOwner {
+  function newDeconstructionRecipie (address item, address[] _rewards, uint256[] _rewardCount) public onlyOwner {
     deconstructionRecipies[item] = DeconstructionRecipie({
-      item: item
+      item: item,
+      rewards: _rewards,
+      rewardCount: _rewardCount
     });
+  }
 
-    for (uint i = 0; i < rewardItems.length; i++) {
-      deconstructionRecipies[item].rewards[rewardItems[i]] = rewardQuantity[i];
-    }
+  function getRecipie (address item) public returns (address[] materials, uint256[] materialCount) {
+    Recipie storage recipie = recipies[item];
+    return (
+      recipie.materials,
+      recipie.materialCount
+    );
+  }
+
+  function getDeconstructionRecipie (address item) public returns (address[] rewards, uint256[] rewardCount) {
+    DeconstructionRecipie storage recipie = deconstructionRecipies[item];
+    return (
+      recipie.rewards,
+      recipie.rewardCount
+    );
   }
 
   function removeRecipie (address result) public onlyOwner {
@@ -48,5 +63,37 @@ contract Crafter is Meta {
 
   function removeDeconstructionRecipie (address item) public onlyOwner {
     delete deconstructionRecipies[item];
+  }
+
+  function craftItem (address item) public {
+    Recipie storage recipie = recipies[item];
+
+    // Ensure user can afford to craft the item
+    for (uint i = 0; i < recipie.materials.length; i++) {
+      assert(Item(recipie.materials[i]).balanceOf(msg.sender) >= recipie.materialCount[i]);
+    }
+
+    // Burn required materials
+    for (uint b = 0; b < recipie.materials.length; b++) {
+      Item(recipie.materials[b]).despawn(recipie.materialCount[b], msg.sender);
+    }
+    
+    // Give crafted item
+    Item(recipie.result).transfer(msg.sender, 1);
+  }
+
+  function destructItem (address item) public {
+    DeconstructionRecipie storage recipie = deconstructionRecipies[item];
+
+    // Ensure user has item
+    assert(Item(item).balanceOf(msg.sender) >= 1);
+
+    // Burn the item
+    Item(item).despawn(1, msg.sender);
+
+    // Issue the rewards
+    for (uint i = 0; i < recipie.rewards.length; i++) {
+      Item(recipie.rewards[i]).transfer(msg.sender, recipie.rewardCount[i]);
+    }
   }
 }
