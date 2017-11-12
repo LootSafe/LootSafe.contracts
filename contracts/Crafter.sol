@@ -82,7 +82,7 @@ contract Crafter is Meta {
     Item(recipie.result).transfer(msg.sender, 1);
   }
 
-  function destructItem (address item) public {
+  function deconstructItem (address item) public {
     DeconstructionRecipie storage recipie = deconstructionRecipies[item];
 
     // Ensure user has item
