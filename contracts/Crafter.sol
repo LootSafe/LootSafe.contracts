@@ -10,6 +10,8 @@ contract Crafter is Meta {
     owner = msg.sender;
   }
 
+  address[] public craftables;
+
   struct Recipie {
     address result;
     address[] materials;
@@ -26,6 +28,8 @@ contract Crafter is Meta {
   mapping(address => DeconstructionRecipie) deconstructionRecipies;
 
   function newRecipie (address result, address[] _materials, uint256[] _materialCount) public onlyOwner {
+    craftables.push(result);
+    
     recipies[result] = Recipie({
       result: result,
       materials: _materials,
