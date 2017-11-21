@@ -10,13 +10,6 @@ contract Crafter is Meta {
     owner = msg.sender;
   }
 
-  event RecipieCreated(address itemAddress);
-  event DeconstructionRecipieCreated(address itemAddress);
-  event ItemCrafted(address itemAddress);
-  event ItemDeconstructed(address itemAddress);
-
-  address[] public craftables;
-
   struct Recipie {
     address result;
     address[] materials;
@@ -32,11 +25,7 @@ contract Crafter is Meta {
   mapping(address => Recipie) recipies;
   mapping(address => DeconstructionRecipie) deconstructionRecipies;
 
-  function newRecipie (address result, address[] _materials, uint256[] _materialCount) public onlyOwner {
-    RecipieCreated(result);
-
-    craftables.push(result);
-    
+  function newRecipie (address result, address[] _materials, uint256[] _materialCount) public onlyOwner {    
     recipies[result] = Recipie({
       result: result,
       materials: _materials,
@@ -45,8 +34,6 @@ contract Crafter is Meta {
   }
 
   function newDeconstructionRecipie (address item, address[] _rewards, uint256[] _rewardCount) public onlyOwner {
-    DeconstructionRecipieCreated(item);
-
     deconstructionRecipies[item] = DeconstructionRecipie({
       item: item,
       rewards: _rewards,
@@ -79,8 +66,6 @@ contract Crafter is Meta {
   }
 
   function craftItem (address item) public {
-    ItemCrafted(item);
-
     Recipie storage recipie = recipies[item];
 
     // Ensure user can afford to craft the item
@@ -98,8 +83,6 @@ contract Crafter is Meta {
   }
 
   function deconstructItem (address item) public {
-    ItemDeconstructed(item);
-
     DeconstructionRecipie storage recipie = deconstructionRecipies[item];
 
     // Ensure user has item
