@@ -31,6 +31,9 @@ contract Crafter is Meta {
   mapping(address => Recipie) recipies;
   mapping(address => DeconstructionRecipie) deconstructionRecipies;
 
+  function getCraftables () public returns (address[] _craftables) { return craftables; }
+  function getDeconstructables () public returns (address[] _deconstructables) { return deconstructables; }
+
   function newRecipie (address result, address[] _materials, uint256[] _materialCount) public onlyOwner {    
     craftables.push(result);
 

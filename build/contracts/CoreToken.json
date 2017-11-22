@@ -1,0 +1,388 @@
+{
+  "contract_name": "CoreToken",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_spender",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "verifyAndDeduct",
+      "outputs": [
+        {
+          "name": "verified",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "created",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "conversionRate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "name": "_spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "name": "remaining",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getVaultBalance",
+      "outputs": [
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "vault",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_name",
+          "type": "bytes8"
+        },
+        {
+          "name": "_symbol",
+          "type": "bytes8"
+        },
+        {
+          "name": "_totalSupply",
+          "type": "uint256"
+        },
+        {
+          "name": "_decimals",
+          "type": "uint8"
+        },
+        {
+          "name": "_vault",
+          "type": "uint256"
+        },
+        {
+          "name": "_conversionRate",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "_spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b60405160c0806109748339810160405280805191906020018051919060200180519190602001805191906020018051919060200180519150505b60018054604860020a608860020a03191669010000000000000000007801000000000000000000000000000000000000000000000000808a04919091029190911760ff191660ff86161768ffffffffffffffff0019166101009188049190910217905560008490556100c8848364010000000061011181026107fa1704565b600160a060020a0333166000818152600260205260409020919091554260045560058054600160a060020a0319169091179055600682905560078190555b505050505050610128565b60008282111561011d57fe5b508082035b92915050565b61083d806101376000396000f300606060405236156100d85763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166306fdde03811461015c578063095ea7b31461019d5780630e4db5ea146101d357806318160ddd1461020957806323b872dd1461022e578063313ce5671461026a578063325a19f11461029357806370a08231146102b85780637ffdf53e146102e95780638da5cb5b1461030e57806395d89b411461033d578063a9059cbb1461037e578063dd62ed3e146103b4578063ed12e8ef146103eb578063fbfa77cf14610410575b61015a5b6000341115610148576100f134600754610435565b6006541061014857600160a060020a03331660009081526002602052604090205460075461012a9190610125903490610435565b610464565b600160a060020a03331660009081526002602052604090205561014d565b600080fd5b610157565b600080fd5b5b565b005b341561016757600080fd5b61016f61047e565b60405177ffffffffffffffffffffffffffffffffffffffffffffffff19909116815260200160405180910390f35b34156101a857600080fd5b6101bf600160a060020a03600435166024356104ac565b604051901515815260200160405180910390f35b34156101de57600080fd5b6101bf600160a060020a0360043516602435610519565b604051901515815260200160405180910390f35b341561021457600080fd5b61021c6105b4565b60405190815260200160405180910390f35b341561023957600080fd5b6101bf600160a060020a03600435811690602435166044356105ba565b604051901515815260200160405180910390f35b341561027557600080fd5b61027d6106c2565b60405160ff909116815260200160405180910390f35b341561029e57600080fd5b61021c6106cb565b60405190815260200160405180910390f35b34156102c357600080fd5b61021c600160a060020a03600435166106d1565b60405190815260200160405180910390f35b34156102f457600080fd5b61021c6106f0565b60405190815260200160405180910390f35b341561031957600080fd5b6103216106f6565b604051600160a060020a03909116815260200160405180910390f35b341561034857600080fd5b61016f610705565b60405177ffffffffffffffffffffffffffffffffffffffffffffffff19909116815260200160405180910390f35b341561038957600080fd5b6101bf600160a060020a036004351660243561072b565b604051901515815260200160405180910390f35b34156103bf57600080fd5b61021c600160a060020a03600435811690602435166107c0565b60405190815260200160405180910390f35b34156103f657600080fd5b61021c6107ed565b60405190815260200160405180910390f35b341561041b57600080fd5b61021c6107f4565b60405190815260200160405180910390f35b6000828202831580610451575082848281151561044e57fe5b04145b151561045957fe5b8091505b5092915050565b60008282018381101561045957fe5b8091505b5092915050565b6001546901000000000000000000900478010000000000000000000000000000000000000000000000000281565b600160a060020a03338116600081815260036020908152604080832094871680845294909152808220859055909291907f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b9259085905190815260200160405180910390a35060015b92915050565b60055460009033600160a060020a0390811691161461053757600080fd5b600160a060020a0383166000908152600260205260409020548290101561055d57600080fd5b600160a060020a03831660009081526002602052604090205461058090836107fa565b600160a060020a0384166000908152600260205260409020556006546105a69083610464565b6006555060015b5b92915050565b60005481565b600160a060020a0380841660008181526003602090815260408083203390951683529381528382205492825260029052918220548390108015906105fe5750828110155b151561060957600080fd5b600160a060020a038085166000908152600260205260408082208054870190559187168152208054849003905560001981101561066e57600160a060020a03808616600090815260036020908152604080832033909416835292905220805484900390555b83600160a060020a031685600160a060020a03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef8560405190815260200160405180910390a3600191505b509392505050565b60015460ff1681565b60045481565b600160a060020a0381166000908152600260205260409020545b919050565b60075481565b600554600160a060020a031681565b600154610100900478010000000000000000000000000000000000000000000000000281565b600160a060020a0333166000908152600260205260408120548290101561075157600080fd5b600160a060020a033381166000818152600260205260408082208054879003905592861680825290839020805486019055917fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9085905190815260200160405180910390a35060015b92915050565b600160a060020a038083166000908152600360209081526040808320938516835292905220545b92915050565b6006545b90565b60065481565b60008282111561080657fe5b508082035b929150505600a165627a7a72305820c93f59b47c3da3602415115377f8e5981d945739b224f1b933f3bd67fc5d6ff40029",
+  "networks": {
+    "5777": {
+      "events": {
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        },
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfb88de099e13c3ed21f80a7a1e49f8caecf10df6",
+      "updated_at": 1511325473324
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1511325473324
+}
