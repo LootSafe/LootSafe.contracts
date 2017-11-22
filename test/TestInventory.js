@@ -1,10 +1,10 @@
-const BlockBench = artifacts.require('BlockBench.sol')
+const LootSafe = artifacts.require('LootSafe.sol')
 const Item = artifacts.require('Item.sol')
-const gasPrice = 4700000
+const gasPrice = 6749762
 
-contract('BlockBench', (accounts) => {
+contract('LootSafe', (accounts) => {
   it('should deploy a contract', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -14,11 +14,11 @@ contract('BlockBench', (accounts) => {
       40000000000000000000000000,
       100
     )
-    if (blockBenchInstance.address === undefined) throw new Error('deployment failed')
+    if (instance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should deploy items', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -29,7 +29,7 @@ contract('BlockBench', (accounts) => {
       100
     )
     
-    blockBenchInstance.createItem(
+    instance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -42,7 +42,7 @@ contract('BlockBench', (accounts) => {
   })
 
   it('should send items', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -53,7 +53,7 @@ contract('BlockBench', (accounts) => {
       100
     )
 
-    const createItem = await blockBenchInstance.createItem(
+    const createItem = await instance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -62,13 +62,13 @@ contract('BlockBench', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await blockBenchInstance.spawnItem(
+    const spawnItem = await instance.spawnItem(
       "Sword",
       accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await blockBenchInstance.getItem.call(
+    const itemAddress = await instance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
@@ -80,7 +80,7 @@ contract('BlockBench', (accounts) => {
   })
 
   it('should despawn items', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -91,7 +91,7 @@ contract('BlockBench', (accounts) => {
       100
     )
 
-    const createItem = await blockBenchInstance.createItem(
+    const createItem = await instance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -100,20 +100,20 @@ contract('BlockBench', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await blockBenchInstance.spawnItem(
+    const spawnItem = await instance.spawnItem(
       "Sword",
       accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await blockBenchInstance.getItem.call(
+    const itemAddress = await instance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
     const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
 
-    const despawnTx = await blockBenchInstance.despawnItem(
+    const despawnTx = await instance.despawnItem(
       "Sword",
       1,
       {gas: gasPrice, from: accounts[1]}
@@ -127,7 +127,7 @@ contract('BlockBench', (accounts) => {
   })
 
   it('should clear availability of items', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -138,7 +138,7 @@ contract('BlockBench', (accounts) => {
       100  
     )
 
-    const createItem = await blockBenchInstance.createItem(
+    const createItem = await instance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -147,18 +147,18 @@ contract('BlockBench', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await blockBenchInstance.getItem.call(
+    const itemAddress = await instance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const inventoryBalance = await Item.at(itemAddress).balanceOf.call(blockBenchInstance.address)
-    const despawnTx = await blockBenchInstance.clearAvailability(
+    const inventoryBalance = await Item.at(itemAddress).balanceOf.call(instance.address)
+    const despawnTx = await instance.clearAvailability(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const inventoryBalanceAfterClear = await Item.at(itemAddress).balanceOf.call(blockBenchInstance.address)
+    const inventoryBalanceAfterClear = await Item.at(itemAddress).balanceOf.call(instance.address)
     
     if (!itemAddress) throw new Error('item address not returned')
     if (!inventoryBalance.gt(0)) throw new Error('item not registered correctly')

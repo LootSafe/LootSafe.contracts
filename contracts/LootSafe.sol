@@ -10,22 +10,22 @@ import "./helpers/Meta.sol";
 // This contract is the central contract of the system and owns
 // items, trades, etc.
 
-contract BlockBench is Meta, Trade, LootBox, Crafter {
+contract LootSafe is Meta, Trade, LootBox, Crafter {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
 
   // Emitted when a new item is created
   event ItemCreated(address itemAddress);
-  // Emitted when an item is no longer avail for distrobution from BlockBench
+  // Emitted when an item is no longer avail for distrobution from LootSafe
   event ItemDelisted(address itemAddress, bytes16 name);
-  // New item given out to user from BlockBench
+  // New item given out to user from LootSafe
   event ItemSpawned(address itemAddress, bytes16 name, address to);
   // Item was trashed by user, thus total supply is down
   event ItemDespawned(address itemAddress, address from, uint256 amount);
   // Tokens were issued to an address
   event TokenIssued(address to, uint256 amount);
 
-  function BlockBench (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _tradeCost, uint256 _lootBoxCost, uint256 _vault, uint256 _conversionRate) public {
+  function LootSafe (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _tradeCost, uint256 _lootBoxCost, uint256 _vault, uint256 _conversionRate) public {
     owner = msg.sender;
     lootBoxCost = _lootBoxCost;
     tradeCost = _tradeCost;
@@ -100,7 +100,7 @@ contract BlockBench is Meta, Trade, LootBox, Crafter {
     Item(items[name]).despawn(amount, msg.sender);
   }
 
-  // No more of this weapon will be spawned now. Or ever.
+  // No more of this asset will be spawned now. Or ever.
   function clearAvailability (bytes8 name) public onlyOwner {
     ItemDelisted(items[name], name);
     Item(items[name]).clearAvailability();

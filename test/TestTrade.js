@@ -1,10 +1,10 @@
-const BlockBench = artifacts.require('BlockBench.sol')
+const LootSafe = artifacts.require('LootSafe.sol')
 const Item = artifacts.require('Item.sol')
-const gasPrice = 4700000
+const gasPrice = 6749762
 
-contract('BlockBench', (accounts) => {
+contract('LootSafe', (accounts) => {
   it('should deploy a contract', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -14,11 +14,11 @@ contract('BlockBench', (accounts) => {
       40000000000000000000000000,
       100     
     )
-    if (blockBenchInstance.address === undefined) throw new Error('deployment failed')
+    if (instance.address === undefined) throw new Error('deployment failed')
   })
 
   it('should should list and fulfill trades', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -28,9 +28,9 @@ contract('BlockBench', (accounts) => {
       40000000000000000000000000,
       100  
     )
-    const issueTokens = await blockBenchInstance.issueTokens(accounts[0], 10000000000000000000)
+    const issueTokens = await instance.issueTokens(accounts[0], 10000000000000000000)
     
-    const sword = await blockBenchInstance.createItem(
+    const sword = await instance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -39,7 +39,7 @@ contract('BlockBench', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shield = await blockBenchInstance.createItem(
+    const shield = await instance.createItem(
       "Shield",
       "basic_shield",
       10000,
@@ -49,24 +49,24 @@ contract('BlockBench', (accounts) => {
     )
 
 
-    const swordAddress = await blockBenchInstance.getItem.call(
+    const swordAddress = await instance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shieldAddress = await blockBenchInstance.getItem.call(
+    const shieldAddress = await instance.getItem.call(
       "Shield",
       {gas: gasPrice, from: accounts[0]}
     )
 
 
-    const giveMeSword = await blockBenchInstance.spawnItem(
+    const giveMeSword = await instance.spawnItem(
       "Sword",
       accounts[0],
       {from: accounts[0]}
     )
 
-    const giveThemShield = await blockBenchInstance.spawnItem(
+    const giveThemShield = await instance.spawnItem(
       "Shield",
       accounts[2],
       {from: accounts[0]}
@@ -75,7 +75,7 @@ contract('BlockBench', (accounts) => {
     const swordOwnerBal = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const shieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
     
-    const startTrade = await blockBenchInstance.newTrade(
+    const startTrade = await instance.newTrade(
       "SwordForShield",
       swordAddress,
       shieldAddress,
@@ -84,17 +84,17 @@ contract('BlockBench', (accounts) => {
       {from: accounts[0]}
     )
 
-    const trade = await blockBenchInstance.getTrade.call(accounts[0], "SwordForShield")
+    const trade = await instance.getTrade.call(accounts[0], "SwordForShield")
 
     if (!trade) throw new Error('coulnt start a new trade')
 
     // fulfill trade
-    const fulfillTrade = await blockBenchInstance.fulfillTrade(
+    const fulfillTrade = await instance.fulfillTrade(
       "SwordForShield",
       accounts[0],
       { from: accounts[2] }
     )
-    const tradeFulfilled = await blockBenchInstance.getTrade.call(accounts[0], "SwordForShield")
+    const tradeFulfilled = await instance.getTrade.call(accounts[0], "SwordForShield")
     
     const newSwordOwnerBal = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const newShieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
@@ -109,7 +109,7 @@ contract('BlockBench', (accounts) => {
   })
 
   it('should should list all of a users trades', async () => {
-    const blockBenchInstance = await BlockBench.new(
+    const instance = await LootSafe.new(
       "Core",
       "CORE",
       80000000000000000000000000,
@@ -119,9 +119,9 @@ contract('BlockBench', (accounts) => {
       40000000000000000000000000,
       100   
     )
-    const issueTokens = await blockBenchInstance.issueTokens(accounts[0], 10000000000000000000)
+    const issueTokens = await instance.issueTokens(accounts[0], 10000000000000000000)
     
-    const sword = await blockBenchInstance.createItem(
+    const sword = await instance.createItem(
       "Sword",
       "basic_sword",
       10000,
@@ -130,7 +130,7 @@ contract('BlockBench', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shield = await blockBenchInstance.createItem(
+    const shield = await instance.createItem(
       "Shield",
       "basic_shield",
       10000,
@@ -140,24 +140,24 @@ contract('BlockBench', (accounts) => {
     )
 
 
-    const swordAddress = await blockBenchInstance.getItem.call(
+    const swordAddress = await instance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const shieldAddress = await blockBenchInstance.getItem.call(
+    const shieldAddress = await instance.getItem.call(
       "Shield",
       {gas: gasPrice, from: accounts[0]}
     )
 
 
-    const giveMeSword = await blockBenchInstance.spawnItem(
+    const giveMeSword = await instance.spawnItem(
       "Sword",
       accounts[0],
       {from: accounts[0]}
     )
 
-    const giveThemShield = await blockBenchInstance.spawnItem(
+    const giveThemShield = await instance.spawnItem(
       "Shield",
       accounts[2],
       {from: accounts[0]}
@@ -166,7 +166,7 @@ contract('BlockBench', (accounts) => {
     const swordOwnerBal = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const shieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
     
-    const startTrade = await blockBenchInstance.newTrade(
+    const startTrade = await instance.newTrade(
       "SwordForShield",
       swordAddress,
       shieldAddress,
@@ -175,9 +175,9 @@ contract('BlockBench', (accounts) => {
       {from: accounts[0]}
     )
 
-    const trade = await blockBenchInstance.getTrade.call(accounts[0], "SwordForShield")
+    const trade = await instance.getTrade.call(accounts[0], "SwordForShield")
     if (!trade) throw new Error('coulnt start a new trade')
-    const trades = await blockBenchInstance.getTrades.call(accounts[0], {from: accounts[0]});
+    const trades = await instance.getTrades.call(accounts[0], {from: accounts[0]});
     if (!trades.length) throw new Error('couldnt get a list of trades');
   })
 })
