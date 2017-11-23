@@ -88,3 +88,5 @@ The Crafter accepts recipies, recipies are a list of required addresses (and amo
     ✓ should should list all of a users trades (526ms)
 ```
 
+
+Copyright LootSafe, LLC
