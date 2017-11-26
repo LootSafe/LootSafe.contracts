@@ -110,11 +110,6 @@ contract Trade is Meta {
     tradeCost = _cost;
   }
 
-  // Get the cost to trade
-  function getTradeCost () constant public returns (uint _tradeCost) {
-    return tradeCost;
-  }
-
   // Get a list of trade id's a merchant has
   function getTrades (address merchant) constant public returns (bytes8[] ids) {
     return (
