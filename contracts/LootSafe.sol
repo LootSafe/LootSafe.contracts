@@ -13,6 +13,7 @@ import "./helpers/Meta.sol";
 contract LootSafe is Meta, Trade, LootBox, Crafter {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
+  address[] public itemAddresses;
 
   // Emitted when a new item is created
   event ItemCreated(address itemAddress);
@@ -42,6 +43,9 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
     );
   }
 
+  function getItemAddresses () public returns (address[] _itemAddresses) { return itemAddresses; }
+
+
   // A whole new world
   function createItem (
     bytes8 _name, 
@@ -67,6 +71,7 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
       )
     );
     itemNames.push(_name);
+    itemAddresses.push(itemAddress);
     items[_name] = itemAddress;
     ItemCreated(itemAddress);
 
