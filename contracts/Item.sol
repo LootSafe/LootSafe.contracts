@@ -13,7 +13,7 @@ import "./helpers/SafeMath.sol";
 contract Item is StandardToken {
   bytes32 public id;
   bytes32 public skin;
-  bytes32 public metadata;
+  string public metadata;
   uint256 public created;
   address public owner;
   uint256 public finalSupply;
@@ -27,7 +27,7 @@ contract Item is StandardToken {
     _;
   }
 
-  function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, bytes32 _metadata) public {
+  function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, string _metadata) public {
     name = _name;                                 // Human readable name of the item
     id = _id;                                     // Computer readable name of the item
     decimals = 0;                                 // You can't trade a fraction of an item. (Sorry exchanges, no fees move on.)
@@ -48,12 +48,15 @@ contract Item is StandardToken {
 
   // Disable all future spawning of this item
   // Final supply dictates how many items were ever in circulation
+  // Useful for special offers, promotionals, etc. 
   function clearAvailability () public onlyOwner {
     finalSupply = SafeMath.sub(totalSupply, balances[owner]);
     balances[owner] = 0;
   }
 
   // Only to be called by Trade
+  // Since items have no decimals, taking fees will be very difficult
+  // This method is to be used by the internal trade system to allow fee free
   function exchange (address _trader, address _receiver, uint256 amount) public onlyOwner {
     Exchange(_trader, _receiver, amount);
     balances[_trader] = SafeMath.sub(balances[_trader], amount);

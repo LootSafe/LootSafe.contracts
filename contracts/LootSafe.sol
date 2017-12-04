@@ -52,7 +52,7 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
     bytes32 _id, 
     uint256 _totalSupply, 
     bytes32 _skin, 
-    bytes32 _metadata
+    string _metadata
   )
     public 
     onlyOwner 
