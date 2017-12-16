@@ -1,6 +1,6 @@
 const LootSafe = artifacts.require('LootSafe.sol')
 const Item = artifacts.require('Item.sol')
-const gasPrice = 6749762
+const gasPrice = 6000029
 
 contract('LootSafe', (accounts) => {
   it('should deploy a contract', async () => {

@@ -1,5 +1,5 @@
 const Item = artifacts.require('Item.sol')
-const gasPrice = 6749762
+const gasPrice = 6000029
 
 contract('Item', (accounts) => {
   it('should deploy a contract', async () => {
