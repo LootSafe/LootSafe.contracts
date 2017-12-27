@@ -5,11 +5,6 @@ import "./helpers/SafeMath.sol";
 
 // This contract represents an item on the network
 // The item can be traded in the same way as a standard ERC20 contract
-//,_,_,_,_,_,_,_,_,_,_|___________________________________________________
-//| | | | | | | | | | |__________________________________________________/
-//'-'-'-'-'-'-'-'-'-'-|-------------------------------------------------
-
-
 contract Item is StandardToken {
   bytes32 public id;
   bytes32 public skin;
@@ -30,8 +25,8 @@ contract Item is StandardToken {
   function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, string _metadata) public {
     name = _name;                                 // Human readable name of the item
     id = _id;                                     // Computer readable name of the item
-    decimals = 0;                                 // You can't trade a fraction of an item. (Sorry exchanges, no fees move on.)
-    symbol = "SAVE";                              // All items are Standard Network Items
+    decimals = 0;                                 // You can't trade a fraction of an item.
+    symbol = "LSIC";                              // Items all get the LSIC symbol for now
     totalSupply = _totalSupply;                   // Total amount of items ever available
     skin = _skin;                                 // Optional skin on the item
     metadata = _metadata;                         // Extra data storage for item

@@ -119,11 +119,11 @@ contract('LootSafe', (accounts) => {
 
     const getRecipie = await instance.getRecipie.call(swordAddress)
 
-    const giveHilt = await instance.spawnItem("Hilt", accounts[1], {from: accounts[0]})
-    const giveBlade = await instance.spawnItem("Blade", accounts[1], {from: accounts[0]})
-    const giveLeather1 = await instance.spawnItem("LScrap", accounts[1], {from: accounts[0]})
-    const giveLeather2 = await instance.spawnItem("LScrap", accounts[1], {from: accounts[0]})
-    const giveLeather3 = await instance.spawnItem("LScrap", accounts[1], {from: accounts[0]})
+    const giveHilt = await instance.spawnItem(hiltAddress, accounts[1], {from: accounts[0]})
+    const giveBlade = await instance.spawnItem(bladeAddress, accounts[1], {from: accounts[0]})
+    const giveLeather1 = await instance.spawnItem(leatherAddress, accounts[1], {from: accounts[0]})
+    const giveLeather2 = await instance.spawnItem(leatherAddress, accounts[1], {from: accounts[0]})
+    const giveLeather3 = await instance.spawnItem(leatherAddress, accounts[1], {from: accounts[0]})
     
     const craftSword = await instance.craftItem(swordAddress, { from: accounts[1] })
 
@@ -170,11 +170,11 @@ contract('LootSafe', (accounts) => {
 
     const getRecipie = await instance.getRecipie.call(swordAddress)
 
-    const giveHilt = await instance.spawnItem("Hilt", accounts[1], {from: accounts[0]})
-    const giveBlade = await instance.spawnItem("Blade", accounts[1], {from: accounts[0]})
-    const giveLeather1 = await instance.spawnItem("LScrap", accounts[1], {from: accounts[0]})
-    const giveLeather2 = await instance.spawnItem("LScrap", accounts[1], {from: accounts[0]})
-    const giveLeather3 = await instance.spawnItem("LScrap", accounts[1], {from: accounts[0]})
+    const giveHilt = await instance.spawnItem(hiltAddress, accounts[1], {from: accounts[0]})
+    const giveBlade = await instance.spawnItem(bladeAddress, accounts[1], {from: accounts[0]})
+    const giveLeather1 = await instance.spawnItem(leatherAddress, accounts[1], {from: accounts[0]})
+    const giveLeather2 = await instance.spawnItem(leatherAddress, accounts[1], {from: accounts[0]})
+    const giveLeather3 = await instance.spawnItem(leatherAddress, accounts[1], {from: accounts[0]})
     
     const craftSword = await instance.craftItem(swordAddress, { from: accounts[1] })
 

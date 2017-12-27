@@ -6,26 +6,6 @@ import "./helpers/Meta.sol";
 
 // This contract represents trade methods available for Items
 // You can consider this your Auction House or General Store
-//                           (   )
-//                          (    )
-//                           (    )
-//                          (    )
-//                            )  )
-//                           (  (                  /\
-//                            (_)                 /  \  /\
-//                    ________[_]________      /\/    \/  \
-//           /\      /\        ______    \    /   /\/\  /\/\
-//          /  \    //_\       \    /\    \  /\/\/    \/    \
-//   /\    / /\/\  //___\       \__/  \    \/
-//  /  \  /\/    \//_____\       \ |[]|     \
-// /\/\/\/       //_______\       \|__|      \
-///      \      /XXXXXXXXXX\                  \
-//       \    /_I_II  I__I_\__________________\
-//               I_I|  I__I_____[]_|_[]_____I
-//               I_II  I__I_____[]_|_[]_____I
-//               I II__I  I     XXXXXXX     I
-//            ~~~~~"   "~~~~~~~~~~~~~~~~~~~~~~~~
-
 contract Trade is Meta {
   uint256 public tradeCost;
 
@@ -57,9 +37,12 @@ contract Trade is Meta {
   mapping(address => mapping(bytes8 => Handshake)) trades;
   mapping(address => bytes8[]) tradeIds;
 
+  function _randomNumber (uint ceiling) constant internal returns (uint generatedNumber) {
+    return (uint(block.blockhash(block.number - 1)) % ceiling + 1);
+  }
+
   // Initalize a new handshake trade
   function newTrade (
-    bytes8 _tradeId,
     address _offer,
     address _desired,
     uint256 _offerAmount,
@@ -67,6 +50,8 @@ contract Trade is Meta {
   )
     public 
   {
+    bytes8 _tradeId = bytes8(_randomNumber(99999999));
+
     require(
       CoreToken(tokenAddress).balanceOf(msg.sender) >= tradeCost
     );

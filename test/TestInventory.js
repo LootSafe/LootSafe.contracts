@@ -62,16 +62,17 @@ contract('LootSafe', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await instance.spawnItem(
-      "Sword",
-      accounts[1],
-      {gas: gasPrice, from: accounts[0]}
-    )
-
     const itemAddress = await instance.getItem.call(
       "Sword",
       {gas: gasPrice, from: accounts[0]}
     )
+
+    const spawnItem = await instance.spawnItem(
+      itemAddress,
+      accounts[1],
+      {gas: gasPrice, from: accounts[0]}
+    )
+
 
     const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
 
@@ -100,21 +101,21 @@ contract('LootSafe', (accounts) => {
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const spawnItem = await instance.spawnItem(
+    const itemAddress = await instance.getItem.call(
       "Sword",
-      accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
-    const itemAddress = await instance.getItem.call(
-      "Sword",
+    const spawnItem = await instance.spawnItem(
+      itemAddress,
+      accounts[1],
       {gas: gasPrice, from: accounts[0]}
     )
 
     const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
 
     const despawnTx = await instance.despawnItem(
-      "Sword",
+      itemAddress,
       1,
       {gas: gasPrice, from: accounts[1]}
     )
@@ -154,7 +155,7 @@ contract('LootSafe', (accounts) => {
 
     const inventoryBalance = await Item.at(itemAddress).balanceOf.call(instance.address)
     const despawnTx = await instance.clearAvailability(
-      "Sword",
+      itemAddress,
       {gas: gasPrice, from: accounts[0]}
     )
 

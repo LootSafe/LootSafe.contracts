@@ -4,7 +4,6 @@ import "./ERC20/StandardToken.sol";
 import "./helpers/SafeMath.sol";
 
 // This is the core utility token for use throughout the network
-
 contract CoreToken is StandardToken {
   uint256 public created;
   address public owner;
@@ -29,6 +28,7 @@ contract CoreToken is StandardToken {
   }
 
   // Used in lootboxes and other parts of the platform to execute fuctions using our Core Utility Token
+  // Owner should only ever be a contract which spawned the token, never an individual!
   function verifyAndDeduct (address _from, uint256 amount) public onlyOwner returns (bool verified) {
     require(balances[_from] >= amount);
     balances[_from] = SafeMath.sub(balances[_from], amount);

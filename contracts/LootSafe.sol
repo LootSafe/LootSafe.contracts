@@ -9,7 +9,6 @@ import "./helpers/Meta.sol";
 
 // This contract is the central contract of the system and owns
 // items, trades, etc.
-
 contract LootSafe is Meta, Trade, LootBox, Crafter {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
@@ -18,9 +17,9 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
   // Emitted when a new item is created
   event ItemCreated(address itemAddress);
   // Emitted when an item is no longer avail for distrobution from LootSafe
-  event ItemDelisted(address itemAddress, bytes16 name);
+  event ItemDelisted(address itemAddress);
   // New item given out to user from LootSafe
-  event ItemSpawned(address itemAddress, bytes16 name, address to);
+  event ItemSpawned(address itemAddress, address to);
   // Item was trashed by user, thus total supply is down
   event ItemDespawned(address itemAddress, address from, uint256 amount);
   // Tokens were issued to an address
@@ -43,8 +42,9 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
     );
   }
 
-  function getItemAddresses () public returns (address[] _itemAddresses) { return itemAddresses; }
-
+  function getItemAddresses () public returns (address[] _itemAddresses) {
+    return itemAddresses;
+  }
 
   // A whole new world
   function createItem (
@@ -83,7 +83,7 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
     return tokenAddress;
   }
 
-  // Get an item name by address
+  // Get an item address by name
   function getItem (bytes8 name) constant public returns (address itemAddress) {
     return items[name];
   }
@@ -94,21 +94,21 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
   }
 
   // Send an item from the available pool to a user
-  function spawnItem (bytes8 name, address to) public onlyOwner {
-    ItemSpawned(items[name], name, to);
-    Item(items[name]).transfer(to, 1);
+  function spawnItem (address item, address to) public onlyOwner {
+    ItemSpawned(item, to);
+    Item(item).transfer(to, 1);
   }
 
   // This can only be done by the user, and is likely done only for athestetic reasons (or you burn expensive stuff like a madman).
-  function despawnItem (bytes8 name, uint256 amount) public {
-    ItemDespawned(items[name], msg.sender, amount);
-    Item(items[name]).despawn(amount, msg.sender);
+  function despawnItem (address item, uint256 amount) public {
+    ItemDespawned(item, msg.sender, amount);
+    Item(item).despawn(amount, msg.sender);
   }
 
   // No more of this asset will be spawned now. Or ever.
-  function clearAvailability (bytes8 name) public onlyOwner {
-    ItemDelisted(items[name], name);
-    Item(items[name]).clearAvailability();
+  function clearAvailability (address item) public onlyOwner {
+    ItemDelisted(item);
+    Item(item).clearAvailability();
   }
 
   // Issue Core Tokens

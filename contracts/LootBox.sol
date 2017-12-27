@@ -78,7 +78,7 @@ contract LootBox is Meta {
   }
 
   // Choose rarity of  loot box
-  function chooseRarity () constant internal returns (bytes8 rarity) {
+  function _chooseRarity () constant internal returns (bytes8 rarity) {
     uint num = randomNumber(100);
 
     if (num <= epicChance) {
@@ -94,7 +94,7 @@ contract LootBox is Meta {
 
   function openBox (address _to) internal returns (address item) {
     // Pick the rarity of the box
-    bytes8 rarity = chooseRarity();
+    bytes8 rarity = _chooseRarity();
 
     // Pick an item from that rarity of boxes
     uint index = randomNumber(SafeMath.sub(items[rarity].length, 1));

@@ -61,13 +61,13 @@ contract('LootSafe', (accounts) => {
 
 
     const giveMeSword = await instance.spawnItem(
-      "Sword",
+      swordAddress,
       accounts[0],
       {from: accounts[0]}
     )
 
     const giveThemShield = await instance.spawnItem(
-      "Shield",
+      shieldAddress,
       accounts[2],
       {from: accounts[0]}
     )
@@ -76,7 +76,6 @@ contract('LootSafe', (accounts) => {
     const shieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
     
     const startTrade = await instance.newTrade(
-      "SwordForShield",
       swordAddress,
       shieldAddress,
       1,
@@ -84,17 +83,20 @@ contract('LootSafe', (accounts) => {
       {from: accounts[0]}
     )
 
-    const trade = await instance.getTrade.call(accounts[0], "SwordForShield")
+    const tradesfromacc = await instance.getTrades.call(accounts[0], {from: accounts[0]});
+    
+
+    const trade = await instance.getTrade.call(accounts[0], tradesfromacc[0])
 
     if (!trade) throw new Error('coulnt start a new trade')
 
     // fulfill trade
     const fulfillTrade = await instance.fulfillTrade(
-      "SwordForShield",
+      tradesfromacc[0],
       accounts[0],
       { from: accounts[2] }
     )
-    const tradeFulfilled = await instance.getTrade.call(accounts[0], "SwordForShield")
+    const tradeFulfilled = await instance.getTrade.call(accounts[0], tradesfromacc[0])
     
     const newSwordOwnerBal = await Item.at(swordAddress).balanceOf.call(accounts[0], {from: accounts[0]})
     const newShieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
@@ -152,13 +154,13 @@ contract('LootSafe', (accounts) => {
 
 
     const giveMeSword = await instance.spawnItem(
-      "Sword",
+      swordAddress,
       accounts[0],
       {from: accounts[0]}
     )
 
     const giveThemShield = await instance.spawnItem(
-      "Shield",
+      swordAddress,
       accounts[2],
       {from: accounts[0]}
     )
@@ -167,7 +169,6 @@ contract('LootSafe', (accounts) => {
     const shieldOwnerBal = await Item.at(shieldAddress).balanceOf.call(accounts[2], {from: accounts[2]})
     
     const startTrade = await instance.newTrade(
-      "SwordForShield",
       swordAddress,
       shieldAddress,
       1,
@@ -175,7 +176,8 @@ contract('LootSafe', (accounts) => {
       {from: accounts[0]}
     )
 
-    const trade = await instance.getTrade.call(accounts[0], "SwordForShield")
+    const tradesfromacc = await instance.getTrades.call(accounts[0], {from: accounts[0]});
+    const trade = await instance.getTrade.call(accounts[0], tradesfromacc[0])
     if (!trade) throw new Error('coulnt start a new trade')
     const trades = await instance.getTrades.call(accounts[0], {from: accounts[0]});
     if (!trades.length) throw new Error('couldnt get a list of trades');
