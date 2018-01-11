@@ -22,11 +22,11 @@ contract Item is StandardToken {
     _;
   }
 
-  function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, string _metadata) public {
+  function Item (bytes8 _name, bytes32 _id, uint256 _totalSupply, bytes32 _skin, string _metadata, bytes8 _symbol) public {
     name = _name;                                 // Human readable name of the item
     id = _id;                                     // Computer readable name of the item
     decimals = 0;                                 // You can't trade a fraction of an item.
-    symbol = "LSIC";                              // Items all get the LSIC symbol for now
+    symbol = _symbol;                             // Symbol of the item
     totalSupply = _totalSupply;                   // Total amount of items ever available
     skin = _skin;                                 // Optional skin on the item
     metadata = _metadata;                         // Extra data storage for item

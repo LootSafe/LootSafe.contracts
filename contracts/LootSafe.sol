@@ -52,7 +52,8 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
     bytes32 _id, 
     uint256 _totalSupply, 
     bytes32 _skin, 
-    string _metadata
+    string _metadata,
+    bytes8 _symbol
   )
     public 
     onlyOwner 
@@ -67,7 +68,8 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
         _id,
         _totalSupply,
         _skin,
-        _metadata
+        _metadata,
+        _symbol
       )
     );
     itemNames.push(_name);

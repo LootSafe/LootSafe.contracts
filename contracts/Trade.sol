@@ -65,6 +65,9 @@ contract Trade is Meta {
       !trades[msg.sender][_tradeId].exists
     );
 
+    // Remove trade cost from sender balance
+    CoreToken(tokenAddress).verifyAndDeduct(msg.sender, tradeCost);
+
     TradeEvent(
       msg.sender,
       _tradeId,
@@ -88,6 +91,8 @@ contract Trade is Meta {
       exists: true,
       fulfilled: false
     });
+
+
   }
 
   // Change the cost of a trade
