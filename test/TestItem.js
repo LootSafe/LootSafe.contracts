@@ -9,6 +9,7 @@ contract('Item', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice}
     )
     if (itemInstance.address === undefined) throw new Error('deployment failed')
@@ -21,6 +22,7 @@ contract('Item', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice}
     )
 
@@ -36,6 +38,7 @@ contract('Item', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice}
     )
 

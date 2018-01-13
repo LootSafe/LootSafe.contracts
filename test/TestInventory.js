@@ -35,6 +35,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     ).then(itemAddress => {
       if (!itemAddress) throw new Error('item not created')
@@ -59,6 +60,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 
@@ -98,6 +100,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 
@@ -145,6 +148,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 

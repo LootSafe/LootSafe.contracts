@@ -32,24 +32,24 @@ contract('LootSafe', (accounts) => {
     const issueTokens = await instance.issueTokens(accounts[0], 10000000000000000000)
     
     // Common
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const shield = await instance.createItem("Shield", "basic_shield", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const axe = await instance.createItem("Axe", "basic_axe", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const shield = await instance.createItem("Shield", "basic_shield", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const axe = await instance.createItem("Axe", "basic_axe", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
 
     // Uncommon
-    const swordUncommon = await instance.createItem("USword", "uncommon_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const shieldUncommon = await instance.createItem("UShield", "uncommon_shield", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const axeUncommon = await instance.createItem("UAxe", "uncommon_axe", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const swordUncommon = await instance.createItem("USword", "uncommon_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const shieldUncommon = await instance.createItem("UShield", "uncommon_shield", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const axeUncommon = await instance.createItem("UAxe", "uncommon_axe", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
     
     // Rare
-    const swordRare = await instance.createItem("RSword", "rare_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const shieldRare = await instance.createItem("RShield", "rare_shield", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const axeRare = await instance.createItem("RAxe", "rare_axe", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const swordRare = await instance.createItem("RSword", "rare_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const shieldRare = await instance.createItem("RShield", "rare_shield", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const axeRare = await instance.createItem("RAxe", "rare_axe", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
         
     // Epica
-    const swordEpic = await instance.createItem("ESword", "epic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const shieldEpic = await instance.createItem("EShield", "epic_shield", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const axeEpic = await instance.createItem("EAxe", "epic_axe", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const swordEpic = await instance.createItem("ESword", "epic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const shieldEpic = await instance.createItem("EShield", "epic_shield", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const axeEpic = await instance.createItem("EAxe", "epic_axe", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
         
     // Addresses
     const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]});
@@ -139,9 +139,9 @@ contract('LootSafe', (accounts) => {
     )
     
     // Epica
-    const swordEpic = await instance.createItem("ESword", "epic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const shieldEpic = await instance.createItem("EShield", "epic_shield", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const axeEpic = await instance.createItem("EAxe", "epic_axe", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const swordEpic = await instance.createItem("ESword", "epic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const shieldEpic = await instance.createItem("EShield", "epic_shield", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const axeEpic = await instance.createItem("EAxe", "epic_axe", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
         
     const swordEpicAddress = await instance.getItem.call("ESword", {from: accounts[0]});
     const shieldEpicAddress = await instance.getItem.call("EShield", {from: accounts[0]});
