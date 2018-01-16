@@ -588,8 +588,61 @@
       "links": {},
       "address": "0x912a379f1ab6120076614c62c4d7233c9ebb4825",
       "updated_at": 1515463115943
+    },
+    "1515886763214": {
+      "events": {
+        "0x6a92faf05529ce5cc88e01dbd9350e401055af5a85f5adf456b796d74e75b0f8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "rarity",
+              "type": "bytes8"
+            },
+            {
+              "indexed": false,
+              "name": "item",
+              "type": "address"
+            }
+          ],
+          "name": "LootBoxOpened",
+          "type": "event"
+        },
+        "0xf8eb04e6c43013770ed5585d21a0eb9e40c228e8a53ccf549dc6cbdb8e50f67b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "cost",
+              "type": "uint256"
+            }
+          ],
+          "name": "CostUpdated",
+          "type": "event"
+        },
+        "0xbb4ccd24eed82a7a2e60176fb55061c57af70aba4003ca2617491c7504a45ef5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "item",
+              "type": "address"
+            }
+          ],
+          "name": "LootBoxItemAdded",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x5776862fba1ffd564c5467a85e9923d49c1df2d6",
+      "updated_at": 1515886778879
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1515463115943
+  "updated_at": 1515886778879
 }

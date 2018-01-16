@@ -581,8 +581,57 @@
       "links": {},
       "address": "0x17c382e1a4a5594e0e5f20f57a47175c785b8a6b",
       "updated_at": 1515463115924
+    },
+    "1515886763214": {
+      "events": {
+        "0xc2de2a2d42d9f8eb5e71e1469d379e57012430f920214015dd821a19ffe6c185": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "merchant",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "tradeId",
+              "type": "bytes8"
+            },
+            {
+              "indexed": false,
+              "name": "offer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "desired",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "offerAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "desiredAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "fulfilled",
+              "type": "bool"
+            }
+          ],
+          "name": "TradeEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x46aced2ada58345c9c950930bebde24134adffb4",
+      "updated_at": 1515886778926
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1515463115924
+  "updated_at": 1515886778926
 }
