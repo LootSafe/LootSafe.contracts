@@ -110,6 +110,9 @@ contract LootBox is Meta {
       delete items[rarity][index];
     }
 
+    // Remove lootbox cost from sender balance
+    CoreToken(tokenAddress).verifyAndDeduct(_to, lootBoxCost);
+
     // Let the world know a lootbox was opened
     LootBoxOpened(_to, rarity, earnedItem);
 

@@ -29,10 +29,10 @@ contract('LootSafe', (accounts) => {
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
 
     const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
     const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})
@@ -65,10 +65,10 @@ contract('LootSafe', (accounts) => {
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
 
     const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
     const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})
@@ -100,10 +100,10 @@ contract('LootSafe', (accounts) => {
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
 
     const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
     const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})
@@ -144,10 +144,10 @@ contract('LootSafe', (accounts) => {
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
 
     const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
     const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})

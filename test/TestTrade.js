@@ -36,6 +36,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 
@@ -45,6 +46,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 
@@ -129,6 +131,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 
@@ -138,6 +141,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 

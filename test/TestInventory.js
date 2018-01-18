@@ -35,6 +35,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     ).then(itemAddress => {
       if (!itemAddress) throw new Error('item not created')
@@ -59,6 +60,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 
@@ -80,52 +82,6 @@ contract('LootSafe', (accounts) => {
     if (!receiverBalance.gt(0)) throw new Error('item not received')
   })
 
-  it('should despawn items', async () => {
-    const instance = await LootSafe.new(
-      "Core",
-      "CORE",
-      80000000000000000000000000,
-      18,
-      3310000000000000,
-      3310000000000000,
-      40000000000000000000000000,
-      100
-    )
-
-    const createItem = await instance.createItem(
-      "Sword",
-      "basic_sword",
-      10000,
-      "basic",
-      "",
-      {gas: gasPrice, from: accounts[0]}
-    )
-
-    const itemAddress = await instance.getItem.call(
-      "Sword",
-      {gas: gasPrice, from: accounts[0]}
-    )
-
-    const spawnItem = await instance.spawnItem(
-      itemAddress,
-      accounts[1],
-      {gas: gasPrice, from: accounts[0]}
-    )
-
-    const receiverBalance = await Item.at(itemAddress).balanceOf(accounts[1])
-
-    const despawnTx = await instance.despawnItem(
-      itemAddress,
-      1,
-      {gas: gasPrice, from: accounts[1]}
-    )
-
-    const receiverBalanceAfterDespawn = await Item.at(itemAddress).balanceOf.call(accounts[1])
-    
-    if (!itemAddress) throw new Error('item address not returned')
-    if (!receiverBalance.gt(0)) throw new Error('item not received')
-    if (!receiverBalanceAfterDespawn.equals(0)) throw new Error('item not despawned')
-  })
 
   it('should clear availability of items', async () => {
     const instance = await LootSafe.new(
@@ -145,6 +101,7 @@ contract('LootSafe', (accounts) => {
       10000,
       "basic",
       "",
+      "LSIC",
       {gas: gasPrice, from: accounts[0]}
     )
 
@@ -154,7 +111,7 @@ contract('LootSafe', (accounts) => {
     )
 
     const inventoryBalance = await Item.at(itemAddress).balanceOf.call(instance.address)
-    const despawnTx = await instance.clearAvailability(
+    const despawnTx = await instance.ownerBurn(
       itemAddress,
       {gas: gasPrice, from: accounts[0]}
     )

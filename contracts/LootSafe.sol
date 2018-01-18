@@ -52,7 +52,8 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
     bytes32 _id, 
     uint256 _totalSupply, 
     bytes32 _skin, 
-    string _metadata
+    string _metadata,
+    bytes8 _symbol
   )
     public 
     onlyOwner 
@@ -67,7 +68,8 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
         _id,
         _totalSupply,
         _skin,
-        _metadata
+        _metadata,
+        _symbol
       )
     );
     itemNames.push(_name);
@@ -99,16 +101,10 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
     Item(item).transfer(to, 1);
   }
 
-  // This can only be done by the user, and is likely done only for athestetic reasons (or you burn expensive stuff like a madman).
-  function despawnItem (address item, uint256 amount) public {
-    ItemDespawned(item, msg.sender, amount);
-    Item(item).despawn(amount, msg.sender);
-  }
-
   // No more of this asset will be spawned now. Or ever.
-  function clearAvailability (address item) public onlyOwner {
+  function ownerBurn (address item) public onlyOwner {
     ItemDelisted(item);
-    Item(item).clearAvailability();
+    Item(item).ownerBurn();
   }
 
   // Issue Core Tokens
