@@ -90,7 +90,7 @@ contract Crafter is Meta {
 
     // Burn required materials
     for (uint b = 0; b < recipie.materials.length; b++) {
-      Item(recipie.materials[b]).despawn(recipie.materialCount[b], msg.sender);
+      Item(recipie.materials[b]).burn(recipie.materialCount[b], msg.sender);
     }
     
     // Give crafted item
@@ -106,7 +106,7 @@ contract Crafter is Meta {
     assert(Item(item).balanceOf(msg.sender) >= 1);
 
     // Burn the item
-    Item(item).despawn(1, msg.sender);
+    Item(item).burn(1, msg.sender);
 
     // Issue the rewards
     for (uint i = 0; i < recipie.rewards.length; i++) {
