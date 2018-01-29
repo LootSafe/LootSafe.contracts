@@ -1,5 +1,4 @@
 const Item = artifacts.require("./Item.sol")
-const Trade = artifacts.require("./Trade.sol")
 const LootBox = artifacts.require("./LootBox.sol")
 const StandardToken = artifacts.require("./ERC20/StandardToken.sol")
 const LootSafe = artifacts.require("./LootSafe.sol")
@@ -14,7 +13,6 @@ module.exports = function(deployer) {
     deployer.deploy(StandardToken, { gas: gasPrice }),
     deployer.deploy(Item, { gas: gasPrice }),
     deployer.deploy(Meta, { gas: gasPrice }),
-    deployer.deploy(Trade, { gas: gasPrice }),
     deployer.deploy(LootBox, { gas: gasPrice }),
     deployer.deploy(LootSafe, { gas: gasPrice }),
     deployer.deploy(CoreToken, { gas: gasPrice })
@@ -23,7 +21,6 @@ module.exports = function(deployer) {
       StandardToken: StandardToken.address,
       Item: Item.address,
       Meta: Meta.address,
-      Trade: Trade.address,
       LootBox: LootBox.address,
       LootSafe: LootSafe.address,
       CoreToken: CoreToken.address
@@ -34,7 +31,7 @@ module.exports = function(deployer) {
       console.log('Contracts directory saved.')
     })
 
-    deployer.link(LootSafe, Meta, Trade, LootBox)
+    deployer.link(LootSafe, Meta, LootBox)
     deployer.link(StandardToken, Item)
     deployer.link(StandardToken, CoreToken)
   })

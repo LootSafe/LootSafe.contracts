@@ -48,13 +48,4 @@ contract Item is StandardToken {
     finalSupply = SafeMath.sub(totalSupply, balances[owner]);
     balances[owner] = 0;
   }
-
-  // Only to be called by Trade
-  // Since items have no decimals, taking fees will be very difficult
-  // This method is to be used by the internal trade system to allow fee free
-  function exchange (address _trader, address _receiver, uint256 amount) public onlyOwner {
-    Exchange(_trader, _receiver, amount);
-    balances[_trader] = SafeMath.sub(balances[_trader], amount);
-    balances[_receiver] += SafeMath.add(balances[_receiver], amount);
-  }
 }

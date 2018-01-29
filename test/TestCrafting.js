@@ -5,11 +5,10 @@ const gasPrice = 6000029
 contract('LootSafe', (accounts) => {
   it('should deploy a contract', async () => {
     const instance = await LootSafe.new(
-      "Core",
-      "CORE",
+      'Core',
+      'CORE',
       80000000000000000000000000,
       18,
-      3310000000000000,
       3310000000000000,
       40000000000000000000000000,
       100
@@ -19,33 +18,31 @@ contract('LootSafe', (accounts) => {
 
   it('should create a recipie, and list it', async () => {
     const instance = await LootSafe.new(
-      "Core",
-      "CORE",
+      'Core',
+      'CORE',
       80000000000000000000000000,
       18,
-      3310000000000000,
       3310000000000000,
       40000000000000000000000000,
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    await instance.createItem('Sword', 'basic_sword', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    await instance.createItem('Hilt', 'sword_hilt', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    await instance.createItem('Blade', 'sword_blade', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    await instance.createItem('LScrap', 'leather_scrap', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
 
-    const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
-    const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})
-    const bladeAddress = await instance.getItem.call("Blade", {from: accounts[0]})
-    const leatherAddress = await instance.getItem.call("LScrap", {from: accounts[0]})
+    const swordAddress = await instance.getItem.call('Sword', {from: accounts[0]})
+    const hiltAddress = await instance.getItem.call('Hilt', {from: accounts[0]})
+    const bladeAddress = await instance.getItem.call('Blade', {from: accounts[0]})
+    const leatherAddress = await instance.getItem.call('LScrap', {from: accounts[0]})
 
-    const swordRecipieCreation = await instance.newRecipie(
-      swordAddress, 
-      [hiltAddress, bladeAddress, leatherAddress], 
-      [1,1,3], 
+    await instance.newRecipie(
+      swordAddress,
+      [hiltAddress, bladeAddress, leatherAddress],
+      [1,1,3],
       {gas: gasPrice, from: accounts[0]}
     )
-
 
     const getRecipie = await instance.getRecipie.call(swordAddress)
 
@@ -55,25 +52,24 @@ contract('LootSafe', (accounts) => {
 
   it('should create a destructing recipie, and list it', async () => {
     const instance = await LootSafe.new(
-      "Core",
-      "CORE",
+      'Core',
+      'CORE',
       80000000000000000000000000,
       18,
-      3310000000000000,
       3310000000000000,
       40000000000000000000000000,
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem('Sword', 'basic_sword', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const hilt = await instance.createItem('Hilt', 'sword_hilt', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const blade = await instance.createItem('Blade', 'sword_blade', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const leather = await instance.createItem('LScrap', 'leather_scrap', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
 
-    const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
-    const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})
-    const bladeAddress = await instance.getItem.call("Blade", {from: accounts[0]})
-    const leatherAddress = await instance.getItem.call("LScrap", {from: accounts[0]})
+    const swordAddress = await instance.getItem.call('Sword', {from: accounts[0]})
+    const hiltAddress = await instance.getItem.call('Hilt', {from: accounts[0]})
+    const bladeAddress = await instance.getItem.call('Blade', {from: accounts[0]})
+    const leatherAddress = await instance.getItem.call('LScrap', {from: accounts[0]})
 
     const swordRecipieCreation = await instance.newDeconstructionRecipie(
       swordAddress, 
@@ -90,25 +86,24 @@ contract('LootSafe', (accounts) => {
 
   it('should allow user to craft recipie', async () => {
     const instance = await LootSafe.new(
-      "Core",
-      "CORE",
+      'Core',
+      'CORE',
       80000000000000000000000000,
       18,
-      3310000000000000,
       3310000000000000,
       40000000000000000000000000,
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem('Sword', 'basic_sword', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const hilt = await instance.createItem('Hilt', 'sword_hilt', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const blade = await instance.createItem('Blade', 'sword_blade', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const leather = await instance.createItem('LScrap', 'leather_scrap', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
 
-    const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
-    const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})
-    const bladeAddress = await instance.getItem.call("Blade", {from: accounts[0]})
-    const leatherAddress = await instance.getItem.call("LScrap", {from: accounts[0]})
+    const swordAddress = await instance.getItem.call('Sword', {from: accounts[0]})
+    const hiltAddress = await instance.getItem.call('Hilt', {from: accounts[0]})
+    const bladeAddress = await instance.getItem.call('Blade', {from: accounts[0]})
+    const leatherAddress = await instance.getItem.call('LScrap', {from: accounts[0]})
 
     const swordRecipieCreation = await instance.newRecipie(
       swordAddress, 
@@ -134,25 +129,24 @@ contract('LootSafe', (accounts) => {
 
   it('should allow user to deconstruct recipie', async () => {
     const instance = await LootSafe.new(
-      "Core",
-      "CORE",
+      'Core',
+      'CORE',
       80000000000000000000000000,
       18,
-      3310000000000000,
       3310000000000000,
       40000000000000000000000000,
       100
     )
 
-    const sword = await instance.createItem("Sword", "basic_sword", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const hilt = await instance.createItem("Hilt", "sword_hilt", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const blade = await instance.createItem("Blade", "sword_blade", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
-    const leather = await instance.createItem("LScrap", "leather_scrap", 10000, "basic", "", "LSIC", {gas: gasPrice, from: accounts[0]})
+    const sword = await instance.createItem('Sword', 'basic_sword', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const hilt = await instance.createItem('Hilt', 'sword_hilt', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const blade = await instance.createItem('Blade', 'sword_blade', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
+    const leather = await instance.createItem('LScrap', 'leather_scrap', 10000, 'basic', '', 'LSIC', {gas: gasPrice, from: accounts[0]})
 
-    const swordAddress = await instance.getItem.call("Sword", {from: accounts[0]})
-    const hiltAddress = await instance.getItem.call("Hilt", {from: accounts[0]})
-    const bladeAddress = await instance.getItem.call("Blade", {from: accounts[0]})
-    const leatherAddress = await instance.getItem.call("LScrap", {from: accounts[0]})
+    const swordAddress = await instance.getItem.call('Sword', {from: accounts[0]})
+    const hiltAddress = await instance.getItem.call('Hilt', {from: accounts[0]})
+    const bladeAddress = await instance.getItem.call('Blade', {from: accounts[0]})
+    const leatherAddress = await instance.getItem.call('LScrap', {from: accounts[0]})
 
     const swordRecipieCreation = await instance.newRecipie(
       swordAddress, 

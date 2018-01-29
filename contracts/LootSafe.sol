@@ -1,15 +1,13 @@
 pragma solidity ^0.4.8;
 
 import "./Item.sol";
-import "./Trade.sol";
 import "./Crafter.sol";
 import "./LootBox.sol";
 import "./CoreToken.sol";
 import "./helpers/Meta.sol";
 
 // This contract is the central contract of the system and owns
-// items, trades, etc.
-contract LootSafe is Meta, Trade, LootBox, Crafter {
+contract LootSafe is Meta, LootBox, Crafter {
   mapping(bytes8 => address) items;
   bytes8[] itemNames;
   address[] public itemAddresses;
@@ -25,10 +23,9 @@ contract LootSafe is Meta, Trade, LootBox, Crafter {
   // Tokens were issued to an address
   event TokenIssued(address to, uint256 amount);
 
-  function LootSafe (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _tradeCost, uint256 _lootBoxCost, uint256 _vault, uint256 _conversionRate) public {
+  function LootSafe (bytes8 _name, bytes8 _symbol, uint256 _totalSupply, uint8 _decimals, uint256 _lootBoxCost, uint256 _vault, uint256 _conversionRate) public {
     owner = msg.sender;
     lootBoxCost = _lootBoxCost;
-    tradeCost = _tradeCost;
     created = now;
     tokenAddress = address(
       new CoreToken(
