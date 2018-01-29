@@ -35,16 +35,14 @@ contract Item is StandardToken {
     owner = msg.sender;                           // This is more than likely Inventory
   }
 
-  // Only to be called by Inventory, by a user
-  function despawn (uint256 amount, address _from) public onlyOwner {
+  // Used to destroy items
+  function burn (uint256 amount, address _from) public onlyOwner {
     totalSupply = SafeMath.sub(totalSupply, amount);         // Remove from total supply since it will be burned
     balances[_from] = SafeMath.sub(balances[_from], amount); // Burned
   }
 
-  // Disable all future spawning of this item
-  // Final supply dictates how many items were ever in circulation
-  // Useful for special offers, promotionals, etc. 
-  function clearAvailability () public onlyOwner {
+  // Burn remaining uncirculating supply from owner account preventing further distrobution from owner
+  function ownerBurn () public onlyOwner {
     finalSupply = SafeMath.sub(totalSupply, balances[owner]);
     balances[owner] = 0;
   }
