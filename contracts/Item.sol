@@ -14,9 +14,6 @@ contract Item is StandardToken {
   uint256 public finalSupply;
   uint256 public vault; // Recycled tokens, available for purchase
 
-  // Internal exchange was issued
-  event Exchange(address trader, address receiver, uint256 amount);
-
   modifier onlyOwner {
     require(msg.sender == owner);
     _;
