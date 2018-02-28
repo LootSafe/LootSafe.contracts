@@ -32,7 +32,7 @@ contract Item is StandardToken {
     owner = msg.sender;                           // This is more than likely Inventory
   }
 
-  // Used to destroy items
+  // Used to destroy items currently used in crafter, will be removed when crafter is standalone
   function burn (uint256 amount, address _from) public onlyOwner {
     totalSupply = SafeMath.sub(totalSupply, amount);         // Remove from total supply since it will be burned
     balances[_from] = SafeMath.sub(balances[_from], amount); // Burned

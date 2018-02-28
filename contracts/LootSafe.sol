@@ -18,8 +18,6 @@ contract LootSafe is Meta, LootBox, Crafter {
   event ItemDelisted(address itemAddress);
   // New item given out to user from LootSafe
   event ItemSpawned(address itemAddress, address to);
-  // Item was trashed by user, thus total supply is down
-  event ItemDespawned(address itemAddress, address from, uint256 amount);
   // Tokens were issued to an address
   event TokenIssued(address to, uint256 amount);
 

@@ -16,91 +16,91 @@ contract Crafter is Meta {
   address[] public craftables;
   address[] public deconstructables;
 
-  struct Recipie {
+  struct Recipe {
     address result;
     address[] materials;
     uint256[] materialCount;
   }
 
-  struct DeconstructionRecipie {
+  struct DeconstructionRecipe {
     address item;
     address[] rewards;
     uint256[] rewardCount;
   }
 
-  mapping(address => Recipie) recipies;
-  mapping(address => DeconstructionRecipie) deconstructionRecipies;
+  mapping(address => Recipe) recipes;
+  mapping(address => DeconstructionRecipe) deconstructionRecipes;
 
   function getCraftables () public returns (address[] _craftables) { return craftables; }
   function getDeconstructables () public returns (address[] _deconstructables) { return deconstructables; }
 
-  function newRecipie (address result, address[] _materials, uint256[] _materialCount) public onlyOwner {    
+  function newRecipe (address result, address[] _materials, uint256[] _materialCount) public onlyOwner {    
     craftables.push(result);
 
-    recipies[result] = Recipie({
+    recipes[result] = Recipe({
       result: result,
       materials: _materials,
       materialCount: _materialCount
     });
   }
 
-  function newDeconstructionRecipie (address item, address[] _rewards, uint256[] _rewardCount) public onlyOwner {
+  function newDeconstructionRecipe (address item, address[] _rewards, uint256[] _rewardCount) public onlyOwner {
     deconstructables.push(item);
 
-    deconstructionRecipies[item] = DeconstructionRecipie({
+    deconstructionRecipes[item] = DeconstructionRecipe({
       item: item,
       rewards: _rewards,
       rewardCount: _rewardCount
     });
   }
 
-  function getRecipie (address item) public returns (address[] materials, uint256[] materialCount) {
-    Recipie storage recipie = recipies[item];
+  function getRecipe (address item) public returns (address[] materials, uint256[] materialCount) {
+    Recipe storage recipe = recipes[item];
     return (
-      recipie.materials,
-      recipie.materialCount
+      recipe.materials,
+      recipe.materialCount
     );
   }
 
-  function getDeconstructionRecipie (address item) public returns (address[] rewards, uint256[] rewardCount) {
-    DeconstructionRecipie storage recipie = deconstructionRecipies[item];
+  function getDeconstructionRecipe (address item) public returns (address[] rewards, uint256[] rewardCount) {
+    DeconstructionRecipe storage recipe = deconstructionRecipes[item];
     return (
-      recipie.rewards,
-      recipie.rewardCount
+      recipe.rewards,
+      recipe.rewardCount
     );
   }
 
-  function removeRecipie (address result) public onlyOwner {
-    delete recipies[result];
+  function removeRecipe (address result) public onlyOwner {
+    delete recipes[result];
   }
 
-  function removeDeconstructionRecipie (address item) public onlyOwner {
-    delete deconstructionRecipies[item];
+  function removeDeconstructionRecipe (address item) public onlyOwner {
+    delete deconstructionRecipes[item];
   }
 
   function craftItem (address item) public {
     ItemCrafted(item);
 
-    Recipie storage recipie = recipies[item];
+    Recipe storage recipe = recipes[item];
 
     // Ensure user can afford to craft the item
-    for (uint i = 0; i < recipie.materials.length; i++) {
-      assert(Item(recipie.materials[i]).balanceOf(msg.sender) >= recipie.materialCount[i]);
+    for (uint i = 0; i < recipe.materials.length; i++) {
+      assert(Item(recipe.materials[i]).balanceOf(msg.sender) >= recipe.materialCount[i]);
     }
 
     // Burn required materials
-    for (uint b = 0; b < recipie.materials.length; b++) {
-      Item(recipie.materials[b]).burn(recipie.materialCount[b], msg.sender);
+    for (uint b = 0; b < recipe.materials.length; b++) {
+      Item(recipe.materials[b]).burn(recipe.materialCount[b], msg.sender);
     }
     
     // Give crafted item
-    Item(recipie.result).transfer(msg.sender, 1);
+    Item(recipe.result).transfer(msg.sender, 1);
   }
 
   function deconstructItem (address item) public {
     ItemDeconstructed(item);
 
-    DeconstructionRecipie storage recipie = deconstructionRecipies[item];
+    DeconstructionRecipe storage recipe = deconstructionRecipes[item];
 
     // Ensure user has item
     assert(Item(item).balanceOf(msg.sender) >= 1);
@@ -109,8 +109,8 @@ contract Crafter is Meta {
     Item(item).burn(1, msg.sender);
 
     // Issue the rewards
-    for (uint i = 0; i < recipie.rewards.length; i++) {
-      Item(recipie.rewards[i]).transfer(msg.sender, recipie.rewardCount[i]);
+    for (uint i = 0; i < recipe.rewards.length; i++) {
+      Item(recipe.rewards[i]).transfer(msg.sender, recipe.rewardCount[i]);
     }
   }
 }
